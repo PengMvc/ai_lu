@@ -3,9 +3,12 @@ package com.redis;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * just for test redis
+ * redis配置类
+ * @author PengMvc
+ * @date 2022/5/23 15:27
  */
 @Controller
 public class RedisTest {
@@ -13,8 +16,9 @@ public class RedisTest {
     private RedisUtil redisUtil;
 
     @RequestMapping("/getRedisValue")
-    public void getRedisValue(){
-        String userName = (String) redisUtil.get("userName");
-        System.out.println("从redis取得值"+userName);
+    @ResponseBody
+    public String getRedisValue(){
+        redisUtil.set("test","hello");
+        return redisUtil.get("test");
     }
 }

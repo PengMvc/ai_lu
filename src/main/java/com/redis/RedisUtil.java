@@ -85,27 +85,23 @@ public class RedisUtil {
 
     // ============================String=============================
     /**
-     *
-     * 普通缓存获取
-     *
+     *redis获取String
      * @param key 键
      * @return 值
      *
      */
-    public Object get(String key) {
-        return key == null ? null : redisTemplate.opsForValue().get(key);
+    public String get(String key) {
+        return key == null ? null : (String) redisTemplate.opsForValue().get(key);
     }
 
     /**
-     *
-     * 普通缓存放入
-     *
+     * redis存入String数据结构
      * @param key   键
      * @param value 值
      * @return true成功 false失败
      *
      */
-    public boolean set(String key, Object value) {
+    public boolean set(String key, String value) {
         try {
             redisTemplate.opsForValue().set(key, value);
             return true;
@@ -116,9 +112,7 @@ public class RedisUtil {
     }
 
     /**
-     *
-     * 普通缓存放入并设置时间
-     *
+     *redis存储String,且可以设置过期时间
      * @param key   键
      * @param value 值
      * @param time  时间(秒) time要大于0 如果time小于等于0 将设置无限期
@@ -130,7 +124,7 @@ public class RedisUtil {
             if (time > 0) {
                 redisTemplate.opsForValue().set(key, value, time, TimeUnit.SECONDS);
             } else {
-                set(key, value);
+                set(key, (String) value);
             }
             return true;
         } catch (Exception e) {

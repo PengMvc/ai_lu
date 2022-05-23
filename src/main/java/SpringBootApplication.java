@@ -1,4 +1,3 @@
-import com.apple.eawt.Application;
 import org.springframework.boot.SpringApplication;
 
 /**
