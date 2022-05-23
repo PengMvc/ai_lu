@@ -1,23 +1,8 @@
 # au_lu
 
 #### 介绍
-基于springboot+mybatis+mysql的web项目，前端选择了简单的jsp,中间件选用了redis,采用的是哨兵的模式，消息中间件用的是kafka,后续我引入swagger方便接口的测试，欢迎大家提出建议和修改，我将持续迭代进行开发，如果觉得还不错的话给个star,万分感谢
+   技术栈介绍：基于springboot+mybatis+mysql的web项目，前端选择了简单的jsp,中间件选用了redis,采用的是哨兵的模式，消息中间件是kafka,后续我会引入swagger方便接口的测试，欢迎大家提出建议和修改，我将持续迭代进行开发，如果觉得还不错的话给个star,万分感谢
 
-#### 软件架构
-软件架构说明
-
-
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
 
 #### 参与贡献
 
