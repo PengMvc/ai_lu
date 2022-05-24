@@ -37,10 +37,10 @@ public class RedisConfig {
         redisTemplate.setKeySerializer(stringRedisSerializer);
         // hash的key也采用String的序列化方式
         redisTemplate.setHashKeySerializer(stringRedisSerializer);
-        // valuevalue采用jackson序列化方式
-        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
-        // hash的value采用jackson序列化方式
-        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
+        // valuevalue采用String序列化方式
+        redisTemplate.setValueSerializer(stringRedisSerializer);
+        // hash的value采用String序列化方式
+        redisTemplate.setHashValueSerializer(stringRedisSerializer);
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }
