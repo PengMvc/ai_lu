@@ -1,11 +1,15 @@
 package com.controller.verification.code;
 
+import com.common.BaseResponse;
 import com.constant.CacheKeyConstant;
 import com.define.exception.VerifyParameterException;
 import com.redis.RedisUtil;
 import com.until.StringUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,14 +23,16 @@ import java.util.Random;
  **/
 @Controller
 @RequestMapping("/verification")
+@Api(tags = "01.验证码接口")
 public class VerificationCodeController {
 
     @Autowired
     RedisUtil redisUtil;
 
-    @RequestMapping("/getVerificatinCode")
+    @GetMapping("/getVerificatinCode")
     @ResponseBody
-    public String getVerificatinCode(@RequestParam String userPhone) throws VerifyParameterException {
+    @ApiOperation("获取验证码")
+    public BaseResponse<String> getVerificatinCode(@RequestParam String userPhone) throws VerifyParameterException {
 
         // 参数校验
         if(StringUtils.isBlank(userPhone)){
@@ -42,7 +48,7 @@ public class VerificationCodeController {
         // 验证码入redis,设置过期时间5分钟
         redisUtil.set(verrifyKey,code,5000);
 
-        return code;
+        return BaseResponse.success(code);
     }
 
     private String generateCode(){
