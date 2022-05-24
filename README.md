@@ -1,8 +1,14 @@
 # ai_lu
 
 #### 介绍
-   技术栈介绍：基于springboot+mybatis+mysql的web项目，中间件选用了redis,采用的是哨兵的模式，消息中间件是kafka,同时集成了swagger方便接口的测试，欢迎大家提出建议和修改，我将持续迭代进行开发，如果觉得还不错的话给个star,万分感谢！
+   技术栈介绍：基于springboot+mybatis+mysql的web项目，缓存中间件选用了redis,采用的是哨兵的模式，实现了高可用，消息中间件是kafka,同时集成了swagger方便接口的测试，欢迎大家提出建议和修改，我将持续迭代进行开发，如果觉得还不错的话给个star,万分感谢！
 
+
+#### 操作简单介绍
+
+1.将项目在容器中部署，启动后
+2.页面登录swagger,swagger地址：http://localhost:8080/swagger-ui.html
+3.接下里就可以通过swagger对接口进行测试
 
 
 #### 参与贡献
