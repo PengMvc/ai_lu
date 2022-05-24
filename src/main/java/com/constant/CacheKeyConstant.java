@@ -9,5 +9,9 @@ public class CacheKeyConstant {
 
     // 用户验证码key
     public static final String USER_VERIFY_KEY="userVerifyKey_";
+
+    // 用户身份证key
+    public static final String USER_IDENTITY="userIdentity_";
+
 }
 

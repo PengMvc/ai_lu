@@ -7,8 +7,11 @@ package com.common.ailuenum;
  **/
 public enum APICode {
 
-    SUCCESS(200,"请求成功");
+    SUCCESS(200,"请求成功"),
 
+    /***********************600-700**********************/
+    REPEAT_REGISTER(600,"重复注册"),
+    FAIL_REGISTER(601,"注册失败");
     /**响应码*/
     private Integer code;
 
