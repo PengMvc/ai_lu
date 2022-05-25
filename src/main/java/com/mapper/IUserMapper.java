@@ -8,9 +8,18 @@ import com.entity.user.User;
  **/
 public interface IUserMapper {
 
-    public Boolean userLogin();
+    /**
+     * 按条件查询用户
+     * @return User
+     */
+    public User queryUserByCondition(User user);
 
-    public Boolean userRegister(User user);
+    /**
+     * 新增用户
+     * @param user
+     * @return true or false
+     */
+    public Boolean addUser(User user);
 
 }
 

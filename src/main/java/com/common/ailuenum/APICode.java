@@ -9,9 +9,11 @@ public enum APICode {
 
     SUCCESS(200,"请求成功"),
 
-    /***********************600-700**********************/
+    /***********************600-700用户相关**********************/
     REPEAT_REGISTER(600,"重复注册"),
-    FAIL_REGISTER(601,"注册失败");
+    FAIL_REGISTER(601,"注册失败"),
+    VERITY_CODE_WRONG(602,"验证码错误"),
+    FAIL_LOGIN(603,"登录失败");
     /**响应码*/
     private Integer code;
 

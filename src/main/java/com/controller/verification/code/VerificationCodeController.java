@@ -46,7 +46,7 @@ public class VerificationCodeController {
         String code = generateCode();
 
         // 验证码入redis,设置过期时间5分钟
-        redisUtil.set(verrifyKey,code,5000);
+        redisUtil.set(verrifyKey,code,300);
 
         return BaseResponse.success(code);
     }

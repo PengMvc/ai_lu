@@ -13,6 +13,17 @@ public class LoginRequest {
     /**登录密码*/
     private String loginPwd;
 
+    /**验证码*/
+    private String verifyCode;
+
+    public String getVerifyCode() {
+        return verifyCode;
+    }
+
+    public void setVerifyCode(String verifyCode) {
+        this.verifyCode = verifyCode;
+    }
+
     public String getUserPhone() {
         return userPhone;
     }

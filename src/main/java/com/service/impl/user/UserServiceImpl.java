@@ -2,7 +2,8 @@ package com.service.impl.user;
 
 import com.common.ailuenum.APICode;
 import com.constant.CacheKeyConstant;
-import com.controller.user.req.RegisterRequest;
+import com.controller.user.req.LoginRequest;
+import com.controller.user.req.UserRequest;
 import com.define.exception.APIException;
 import com.entity.user.User;
 import com.mapper.IUserMapper;
@@ -31,7 +32,7 @@ public class UserServiceImpl implements IUserService {
     private IUserMapper userMapper;
 
     @Override
-    public void userRegister(RegisterRequest req) {
+    public void userRegister(UserRequest req) {
         Boolean registerFlag = false;
         String userIdetityKey = CacheKeyConstant.USER_IDENTITY+req.getUserIdentityCard();
 
@@ -45,7 +46,7 @@ public class UserServiceImpl implements IUserService {
 
         // 用户注册
         try {
-            registerFlag = userMapper.userRegister(createUserInfo(req));
+            registerFlag = userMapper.addUser(createUserInfo(req));
             if(registerFlag){
                 // 用户身份证入redis
                 redisUtil.set(userIdetityKey,req.getUserIdentityCard());
@@ -56,22 +57,66 @@ public class UserServiceImpl implements IUserService {
         }
      }
 
+    @Override
+    public void userLogin(LoginRequest req) {
+
+        String verifyKey = CacheKeyConstant.USER_VERIFY_KEY+req.getUserPhone();
+
+        // get verifyCode from redis
+        String verifyCode = redisUtil.get(verifyKey);
+
+        // check verifyCode is eq or not
+        if(!req.getVerifyCode().equals(verifyCode)){
+            throw new APIException(APICode.VERITY_CODE_WRONG);
+        }
+
+        // get userInfo from mysql
+        try {
+            User user = userMapper.queryUserByCondition(createLoginUserInfo(req));
+            if(!checkLoginParam(user,req)){
+                throw new APIException(APICode.FAIL_LOGIN);
+            }
+        } catch (Exception e) {
+            throw new APIException(APICode.FAIL_LOGIN);
+        }
+   }
+
     /**
      * 封装user数据
      * @param req
      * @return
      */
-    private User createUserInfo(RegisterRequest req){
+    private User createUserInfo(UserRequest req){
         User user = new User();
+        user.setLoginPwd(req.getLoginPwd());
+        user.setUserPhone(req.getUserPhone());
         user.setUserId(123);
         user.setUserAddress(req.getUserAddress());
         user.setUserName(req.getUserName());
         user.setUserIdentityCard(req.getUserIdentityCard());
-        user.setLoginPwd(req.getLoginPwd());
         user.setSalary(req.getSalary());
         user.setSex(req.getSex());
-        user.setUserPhone(req.getUserPhone());
         return user;
     }
 
+    /**
+     * check login userPhone and pwd
+     * @param user
+     * @param req
+     * @return true or false
+     */
+    private Boolean checkLoginParam(User user,LoginRequest req){
+        if(StringUtils.isEqual(user.getUserPhone(),req.getUserPhone()) &&
+        StringUtils.isEqual(user.getLoginPwd(),req.getLoginPwd())){
+            return true;
+        }
+      return false;
+    }
+
+    private User createLoginUserInfo(LoginRequest req){
+        User user = new User();
+        user.setUserPhone(req.getUserPhone());
+        user.setLoginPwd(req.getLoginPwd());
+        return user;
+    }
 }

@@ -7,6 +7,9 @@ package com.entity.user;
  **/
 public class User {
 
+    /**主键*/
+    private Integer id;
+
     /**用户姓名*/
     private String userName;
 

@@ -1,7 +1,8 @@
 package com.service.user;
 
-import com.common.BaseResponse;
-import com.controller.user.req.RegisterRequest;
+import com.controller.user.req.LoginRequest;
+import com.controller.user.req.UserRequest;
+import com.entity.user.User;
 
 /**
  * 用户接口
@@ -15,5 +16,10 @@ public interface IUserService {
      * @param req
      * @return
      */
-    public void userRegister(RegisterRequest req);
+    public void userRegister(UserRequest req);
+
+    /**
+     *用户登录
+     */
+    public void userLogin(LoginRequest req);
 }

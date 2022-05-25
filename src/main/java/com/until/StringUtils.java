@@ -19,6 +19,25 @@ public class StringUtils {
         }
         return false;
     }
+
+    /**
+     * if str1 or str2 null throws npe
+     * if eq return true
+     * else return false
+     * @param str1
+     * @param str2
+     * @return   true or flase
+     */
+    public static Boolean isEqual(String str1,String str2){
+        if(str1 == null || str2 == null){
+            throw new NullPointerException("存在字符串为null");
+        }
+
+        if(str1.equals(str2)){
+            return true;
+        }
+      return false;
+    }
 }
 
 

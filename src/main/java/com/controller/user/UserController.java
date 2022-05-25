@@ -1,7 +1,8 @@
 package com.controller.user;
 
 import com.common.BaseResponse;
-import com.controller.user.req.RegisterRequest;
+import com.controller.user.req.LoginRequest;
+import com.controller.user.req.UserRequest;
 import com.define.exception.VerifyParameterException;
 import com.service.user.IUserService;
 import com.until.StringUtils;
@@ -28,16 +29,10 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @PostMapping("/login")
-    @ApiOperation("用户登录")
-    public Boolean userLogin(){
-        return true;
-    }
-
     @PostMapping("/userRegister")
     @ApiOperation("用户注册")
     @ResponseBody
-    public BaseResponse<Void> userRegister(@RequestBody RegisterRequest req) throws VerifyParameterException {
+    public BaseResponse<Void> userRegister(@RequestBody UserRequest req) throws VerifyParameterException {
 
         // 核心参数校验
         if(StringUtils.isBlank(req.getUserIdentityCard()) ||
@@ -47,6 +42,21 @@ public class UserController {
 
         // 用户注册
         userService.userRegister(req);
+        return BaseResponse.success();
+    }
+
+    @PostMapping("/login")
+    @ApiOperation("用户登录")
+    @ResponseBody
+    public BaseResponse<Void> userLogin(@RequestBody LoginRequest req) throws VerifyParameterException {
+        // 登录核心参数校验
+        if(StringUtils.isBlank(req.getVerifyCode()) ||
+                StringUtils.isBlank(req.getUserPhone()) || StringUtils.isBlank(req.getLoginPwd())){
+            throw new VerifyParameterException("用户注册缺少核心数据");
+        }
+
+        // 用户登录
+        userService.userLogin(req);
         return BaseResponse.success();
     }
 }

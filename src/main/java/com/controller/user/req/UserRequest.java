@@ -5,7 +5,7 @@ package com.controller.user.req;
  * @Author: PengMvc
  * @Date: 2022/05/24/18:54
  */
-public class RegisterRequest {
+public class UserRequest {
 
     /**用户姓名*/
     private String userName;

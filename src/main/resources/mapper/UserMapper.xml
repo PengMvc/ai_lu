@@ -3,8 +3,29 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mapper.IUserMapper">
+    <resultMap id="BaseResultMap" type="com.entity.user.User">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="user_phone" jdbcType="VARCHAR" property="userPhone"/>
+        <result column="login_pwd" jdbcType="VARCHAR" property="loginPwd"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="salary" jdbcType="BIGINT" property="salary"/>
+        <result column="user_address" jdbcType="VARCHAR" property="userAddress"/>
+        <result column="user_identity_card" jdbcType="VARCHAR" property="userIdentityCard"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+    </resultMap>
 
-    <insert id="userRegister" parameterType="com.entity.user.User">
+    <sql id="Base_Column_List">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        id,user_name,user_phone,login_pwd,sex,salary,user_address,user_identity_card,user_id
+    </sql>
+    <!--新增用户-->
+    <insert id="addUser" parameterType="com.entity.user.User">
         insert into ai_lu_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
 
@@ -61,4 +82,33 @@
             </if>
          </trim>
     </insert>
+    <!-- query user by condition-->
+    <select id="queryUserByCondition" parameterType="com.entity.user.User" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM ai_lu_user alu where 1=1
+        <if test="userName != null">
+            and alu.user_name = #{userName}
+        </if>
+        <if test="userPhone != null">
+            and alu.user_phone = #{userPhone}
+        </if>
+        <if test="loginPwd != null">
+            and alu.login_pwd = #{loginPwd}
+        </if>
+        <if test="sex != null">
+            and alu.sex = #{sex}
+        </if>
+        <if test="salary != null">
+            and alu.salary = #{salary}
+        </if>
+        <if test="userAddress != null">
+            and alu.user_address = #{userAddress}
+        </if>
+        <if test="userIdentityCard != null">
+            and alu.user_identity_card = #{userIdentityCard}
+        </if>
+        <if test="userId != null">
+            and alu.user_id = #{userId}
+        </if>
+    </select>
 </mapper>
