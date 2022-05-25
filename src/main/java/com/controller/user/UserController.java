@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 /**
- * 客户登录接口
+ * 用户相关接口
  * @Author PengMvc
  * @Date 2022/5/23 20:34
  **/
