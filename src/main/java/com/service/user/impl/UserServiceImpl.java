@@ -1,7 +1,8 @@
-package com.service.impl.user;
+package com.service.user.impl;
 
 import com.common.ailuenum.APICode;
 import com.constant.CacheKeyConstant;
+import com.controller.user.req.EditUserRequest;
 import com.controller.user.req.LoginRequest;
 import com.controller.user.req.UserRequest;
 import com.define.exception.APIException;
@@ -80,6 +81,27 @@ public class UserServiceImpl implements IUserService {
             throw new APIException(APICode.FAIL_LOGIN);
         }
    }
+
+    @Override
+    public void editUserInfo(EditUserRequest req) {
+
+        String userIdetityKey = CacheKeyConstant.USER_IDENTITY+req.getUserIdentityCard();
+
+        // get user from redis,maybe get from mysql is plus
+        String userIdentityCard = redisUtil.get(userIdetityKey);
+
+        // if userIdentityCard is null or not
+        if(StringUtils.isBlank(userIdentityCard)){
+            throw new APIException(APICode.NOT_REGISTER);
+        }
+
+        // edit user
+        try {
+            userMapper.editUserInfo(req);
+        } catch (Exception e) {
+            throw new APIException(APICode.FAIL_EDIT_USER);
+        }
+    }
 
     /**
      * 封装user数据

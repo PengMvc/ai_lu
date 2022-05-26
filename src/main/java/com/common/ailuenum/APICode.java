@@ -13,7 +13,11 @@ public enum APICode {
     REPEAT_REGISTER(600,"重复注册"),
     FAIL_REGISTER(601,"注册失败"),
     VERITY_CODE_WRONG(602,"验证码错误"),
-    FAIL_LOGIN(603,"登录失败");
+    FAIL_LOGIN(603,"登录失败"),
+    NOT_REGISTER(604,"该用户还未注册"),
+    FAIL_EDIT_USER(605,"修改用户信息失败");
+
+
     /**响应码*/
     private Integer code;
 

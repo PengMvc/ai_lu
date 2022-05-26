@@ -1,5 +1,6 @@
 package com.mapper;
 
+import com.controller.user.req.EditUserRequest;
 import com.entity.user.User;
 
 /**
@@ -21,6 +22,11 @@ public interface IUserMapper {
      */
     public Boolean addUser(User user);
 
+    /**
+     *修改用户
+     * @param req
+     */
+    public void editUserInfo(EditUserRequest req);
 }
 
 

@@ -1,9 +1,11 @@
 package com.controller.user;
 
 import com.common.BaseResponse;
+import com.controller.user.req.EditUserRequest;
 import com.controller.user.req.LoginRequest;
 import com.controller.user.req.UserRequest;
 import com.define.exception.VerifyParameterException;
+import com.entity.user.User;
 import com.service.user.IUserService;
 import com.until.StringUtils;
 import io.swagger.annotations.Api;
@@ -45,7 +47,7 @@ public class UserController {
         return BaseResponse.success();
     }
 
-    @PostMapping("/login")
+    @PostMapping("/userLogin")
     @ApiOperation("用户登录")
     @ResponseBody
     public BaseResponse<Void> userLogin(@RequestBody LoginRequest req) throws VerifyParameterException {
@@ -57,6 +59,21 @@ public class UserController {
 
         // 用户登录
         userService.userLogin(req);
+        return BaseResponse.success();
+    }
+
+    @PostMapping("/editUserInfo")
+    @ApiOperation("修改收货地址和密码")
+    @ResponseBody
+    public BaseResponse<Void>  editSingleUserInfo(@RequestBody EditUserRequest req) throws VerifyParameterException {
+
+        // check necessary data
+        if(StringUtils.isBlank(req.getUserAddress()) || StringUtils.isBlank(req.getLoginPwd())){
+            throw new VerifyParameterException("修改用户信息，缺少必传参数");
+        }
+
+        // 修改用户信息
+        userService.editUserInfo(req);
         return BaseResponse.success();
     }
 }

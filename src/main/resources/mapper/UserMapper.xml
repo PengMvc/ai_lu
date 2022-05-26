@@ -82,6 +82,7 @@
             </if>
          </trim>
     </insert>
+
     <!-- query user by condition-->
     <select id="queryUserByCondition" parameterType="com.entity.user.User" resultMap="BaseResultMap">
         SELECT <include refid="Base_Column_List" />
@@ -111,4 +112,18 @@
             and alu.user_id = #{userId}
         </if>
     </select>
+
+    <!--修改用户信息-->
+    <update id="editUserInfo" parameterType="com.controller.user.req.EditUserRequest">
+        update ai_lu_user alu
+        <set>
+            <if test="loginPwd != null">
+                 alu.login_pwd = #{loginPwd},
+            </if>
+            <if test="userAddress != null">
+                 alu.user_address = #{userAddress}
+            </if>
+        </set>
+        where alu.user_identity_card = #{userIdentityCard}
+    </update>
 </mapper>
