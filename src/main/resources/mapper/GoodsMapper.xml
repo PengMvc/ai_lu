@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.IGoodsMapper">
+    <resultMap id="BaseResultMap" type="com.entity.goods.Goods">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="BIGINT" property="goodsId"/>
+        <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+        <result column="goods_price" jdbcType="DECIMAL" property="goodsPrice"/>
+        <result column="first_category" jdbcType="VARCHAR" property="firstCategory"/>
+        <result column="second_category" jdbcType="VARCHAR" property="secondCategory"/>
+        <result column="third_category" jdbcType="VARCHAR" property="thirdCategory"/>
+        <result column="goods_no" jdbcType="BIGINT" property="goodsNo"/>
+        <result column="goods_num" jdbcType="BIGINT" property="goodsNum"/>
+        <result column="goods_source" jdbcType="VARCHAR" property="goodsSource"/>
+        <result column="is_on_sale" jdbcType="BIGINT" property="isOnSale"/>
+        <result column="goods_desc" jdbcType="VARCHAR" property="goodsDesc"/>
+        <result column="goods_send_location" jdbcType="VARCHAR" property="goodsSendLocation"/>
+
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        id,goods_name,goods_price,first_category,second_category,third_category,
+        goods_no,goods_num,goods_source,is_on_sale,goods_desc,goods_send_location
+    </sql>
+
+    <!-- query goods by condition (page)-->
+    <select id="queryGoodsPage" parameterType="com.controller.req.QueryGoodsRequest" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM ai_lu_goods alg where 1=1
+        <if test="goodsName != null">
+            and alg.goods_name = #{goodsName}
+        </if>
+        <if test="goodsPrice1 != null and goodsPrice2 != null">
+            and alg.goods_price between #{goodsPrice1} and #{goodsPrice2}
+        </if>
+        <if test="firstCategory != null">
+            and alg.first_category = #{firstCategory}
+        </if>
+        <if test="secondCategory != null">
+            and alg.second_category = #{secondCategory}
+        </if>
+        <if test="thirdCategory != null">
+            and alg.third_category = #{thirdCategory}
+        </if>
+        <if test="isOnSale != null">
+            and alg.is_on_sale = #{isOnSale}
+        </if>
+    </select>
+
+
+</mapper>
