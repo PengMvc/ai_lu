@@ -15,7 +15,14 @@ public interface IGoodsService {
     /**
      * 根据条件查询商品信息
      * @param req
-     * @return
+     * @return 商品集合
      */
     public PageInfo<Goods> queryGoodsListPage(QueryGoodsRequest req);
+
+    /**
+     * 查询商品详情
+     * @param goodsNo
+     * @return
+     */
+    public Goods queryGoodsDetail(Integer goodsNo);
 }

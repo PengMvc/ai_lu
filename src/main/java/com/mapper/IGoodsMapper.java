@@ -17,4 +17,11 @@ public interface IGoodsMapper {
      * @return
      */
     public List<Goods> queryGoodsPage(QueryGoodsRequest req);
+
+    /**
+     * query goods detail
+     * @param goodNo
+     * @return goods
+     */
+    public Goods queryGoodsDetail(Integer goodNo);
 }

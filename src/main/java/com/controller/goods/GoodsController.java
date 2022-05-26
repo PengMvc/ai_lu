@@ -11,10 +11,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,5 +38,18 @@ public class GoodsController {
             throw new VerifyParameterException("商品分页查询没有传pageNo或pageSize");
         }
        return BaseResponse.success(goodService.queryGoodsListPage(req));
+    }
+
+    @PostMapping("/getGoodsDetail")
+    @ApiOperation("查询商品详情")
+    @ResponseBody
+    public BaseResponse<Goods> queryGoodsDetail(@RequestParam Integer goodsNo) throws VerifyParameterException {
+        // check param
+        if(goodsNo == null){
+            throw new VerifyParameterException("查询商品详情时，缺少商品编号必传参数");
+        }
+
+        // get goodsDetail
+        return BaseResponse.success(goodService.queryGoodsDetail(goodsNo));
     }
 }

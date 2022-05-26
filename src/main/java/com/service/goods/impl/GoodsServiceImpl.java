@@ -36,4 +36,10 @@ public class GoodsServiceImpl implements IGoodsService {
         }
         return new PageInfo<>(goodsList);
     }
+
+    @Override
+    public Goods queryGoodsDetail(Integer goodsNo) {
+        Goods goods = goodsMapper.queryGoodsDetail(goodsNo);
+        return goods;
+    }
 }
