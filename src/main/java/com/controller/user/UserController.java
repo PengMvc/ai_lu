@@ -5,7 +5,6 @@ import com.controller.user.req.EditUserRequest;
 import com.controller.user.req.LoginRequest;
 import com.controller.user.req.UserRequest;
 import com.define.exception.VerifyParameterException;
-import com.entity.user.User;
 import com.service.user.IUserService;
 import com.until.StringUtils;
 import io.swagger.annotations.Api;
@@ -54,7 +53,7 @@ public class UserController {
         // 登录核心参数校验
         if(StringUtils.isBlank(req.getVerifyCode()) ||
                 StringUtils.isBlank(req.getUserPhone()) || StringUtils.isBlank(req.getLoginPwd())){
-            throw new VerifyParameterException("用户注册缺少核心数据");
+            throw new VerifyParameterException("用户登录缺少核心数据");
         }
 
         // 用户登录
