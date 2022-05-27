@@ -1,6 +1,6 @@
 package com.service.goods.impl;
 
-import com.controller.req.QueryGoodsRequest;
+import com.controller.goods.req.QueryGoodsRequest;
 import com.entity.goods.Goods;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

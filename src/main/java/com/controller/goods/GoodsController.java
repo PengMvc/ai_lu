@@ -1,19 +1,17 @@
 package com.controller.goods;
 
 import com.common.BaseResponse;
-import com.controller.req.QueryGoodsRequest;
+import com.controller.goods.req.QueryGoodsRequest;
 import com.define.exception.VerifyParameterException;
 import com.entity.goods.Goods;
 import com.github.pagehelper.PageInfo;
 import com.service.goods.IGoodsService;
-import com.until.StringUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 /**
  * 商品信息相关接口

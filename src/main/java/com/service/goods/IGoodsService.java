@@ -1,10 +1,8 @@
 package com.service.goods;
 
-import com.controller.req.QueryGoodsRequest;
+import com.controller.goods.req.QueryGoodsRequest;
 import com.entity.goods.Goods;
 import com.github.pagehelper.PageInfo;
-
-import java.util.List;
 
 /**
  * @Author: PengMvc

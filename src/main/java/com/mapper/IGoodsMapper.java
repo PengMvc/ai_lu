@@ -1,6 +1,6 @@
 package com.mapper;
 
-import com.controller.req.QueryGoodsRequest;
+import com.controller.goods.req.QueryGoodsRequest;
 import com.entity.goods.Goods;
 
 import java.util.List;

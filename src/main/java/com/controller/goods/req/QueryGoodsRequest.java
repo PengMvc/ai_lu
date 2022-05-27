@@ -1,7 +1,6 @@
-package com.controller.req;
+package com.controller.goods.req;
 
 import com.common.PageRequest;
-import io.swagger.models.auth.In;
 
 import java.math.BigDecimal;
 
