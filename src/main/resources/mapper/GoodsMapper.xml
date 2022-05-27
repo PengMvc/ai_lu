@@ -31,7 +31,7 @@
     </sql>
 
     <!-- query goods by condition (page)-->
-    <select id="queryGoodsPage" parameterType="com.controller.req.QueryGoodsRequest" resultMap="BaseResultMap">
+    <select id="queryGoodsPage" parameterType="com.controller.goods.req.QueryGoodsRequest" resultMap="BaseResultMap">
         SELECT <include refid="Base_Column_List" />
         FROM ai_lu_goods alg where 1=1
         <if test="goodsName != null">
