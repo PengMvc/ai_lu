@@ -1,4 +1,4 @@
-package com.common.thread;
+package com.threadpool;
 
 import io.netty.util.concurrent.DefaultThreadFactory;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
