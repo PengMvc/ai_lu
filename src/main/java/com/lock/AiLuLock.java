@@ -5,8 +5,8 @@ package com.lock;
  * @Author: PengMvc
  * @Date: 2022/05/27/22:30
  */
-public class Lock {
+public class AiLuLock {
 
     /** lock of place order*/
-    private static final String PLACE_ORDER="placeOrder";
+    public static final String PLACE_ORDER="placeOrder";
 }

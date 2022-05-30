@@ -15,7 +15,11 @@ public enum APICode {
     VERITY_CODE_WRONG(602,"验证码错误"),
     FAIL_LOGIN(603,"登录失败"),
     NOT_REGISTER(604,"该用户还未注册"),
-    FAIL_EDIT_USER(605,"修改用户信息失败");
+    FAIL_EDIT_USER(605,"修改用户信息失败"),
+
+    /**********************700-800订单相关****************************/
+    INVENTORY_SHORTAGE(700,"库存不足"),
+    FAIL_PLACE_ORDER(701,"用户下单失败");
 
 
     /**响应码*/

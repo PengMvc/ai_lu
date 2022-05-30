@@ -24,4 +24,10 @@ public interface IGoodsMapper {
      * @return goods
      */
     public Goods queryGoodsDetail(Integer goodNo);
+
+    /**
+     * 更新商品信息表
+     * @param goods
+     */
+    public void updateGoodsInfo(Goods goods);
 }
