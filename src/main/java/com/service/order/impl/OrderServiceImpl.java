@@ -9,10 +9,13 @@ import com.lock.AiLuLock;
 import com.mapper.IGoodsMapper;
 import com.mapper.IOrderMapper;
 import com.service.order.IOrderService;
+import com.service.user.impl.UserServiceImpl;
 import com.until.BizNoGenerator;
 import com.until.DateUtil;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +29,8 @@ import java.util.Date;
  */
 @Service
 public class OrderServiceImpl implements IOrderService {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private IOrderService orderService;
@@ -61,6 +66,7 @@ public class OrderServiceImpl implements IOrderService {
             Goods goods = goodsMapper.queryGoodsDetail(req.getGoodsNo());
             Integer remain = goods.getGoodsNum() - req.getBuyNum();
             if(remain < 0){
+                logger.error("库存不足");
                 throw new APIException(APICode.INVENTORY_SHORTAGE);
             }
 
@@ -69,7 +75,8 @@ public class OrderServiceImpl implements IOrderService {
 
             // update inventory
             goodsMapper.updateGoodsInfo(createGoodsData(req.getGoodsNo(),remain));
-        } catch (APIException e) {
+        } catch (Exception e) {
+            logger.error("下单失败");
             throw new APIException(APICode.FAIL_PLACE_ORDER);
         }finally {
             placeOrderLock.unlock();
@@ -89,7 +96,7 @@ public class OrderServiceImpl implements IOrderService {
         BigDecimal goodsTotalPrice = goods.getGoodsPrice().multiply(new BigDecimal(req.getBuyNum()));
         req.setOrderTotalPrice(goodsTotalPrice.add(req.getLogisticsFee()));
         req.setGoodsTotalPrice(goodsTotalPrice);
-        req.setOrderNO(BizNoGenerator.getOrderNo());
+        req.setOrderNO(BizNoGenerator.getOrderNo(req.getOrderLogisticsId()));
         req.setOrderStatus(OrderEnum.NO_PAY.getCode());
         return req;
     }
