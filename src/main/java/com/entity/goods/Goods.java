@@ -45,6 +45,21 @@ public class Goods {
     /**goods send location*/
     private String goodsSendLocation;
 
+    /**goods image*/
+    private String goodsImg;
+
+    public void setGoodsPrice(BigDecimal goodsPrice) {
+        this.goodsPrice = goodsPrice;
+    }
+
+    public String getGoodsImg() {
+        return goodsImg;
+    }
+
+    public void setGoodsImg(String goodsImg) {
+        this.goodsImg = goodsImg;
+    }
+
     public Integer getGoodsId() {
         return goodsId;
     }

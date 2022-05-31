@@ -19,6 +19,7 @@
         <result column="is_on_sale" jdbcType="BIGINT" property="isOnSale"/>
         <result column="goods_desc" jdbcType="VARCHAR" property="goodsDesc"/>
         <result column="goods_send_location" jdbcType="VARCHAR" property="goodsSendLocation"/>
+        <result column="goods_img" jdbcType="VARCHAR" property="goodsImg"/>
 
     </resultMap>
 
@@ -27,7 +28,7 @@
           WARNING - @mbg.generated
         -->
         id,goods_name,goods_price,first_category,second_category,third_category,
-        goods_no,goods_num,goods_source,is_on_sale,goods_desc,goods_send_location
+        goods_no,goods_num,goods_source,is_on_sale,goods_desc,goods_send_location,goods_img
     </sql>
 
     <!-- query goods by condition (page)-->
