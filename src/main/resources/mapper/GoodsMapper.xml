@@ -58,4 +58,16 @@
         FROM ai_lu_goods alg where alg.goods_no = #{goodsNo}
     </select>
 
+    <!--update goodNum-->
+    <update id="updateGoodsInfo" parameterType="com.entity.goods.Goods">
+        update ai_lu_goods alg
+        <set>
+            <if test="goodsNum != null">
+                alg.goods_num = #{goodsNum}
+            </if>
+        </set>
+
+        where alg.goods_no = #{goodsNo}
+    </update>
+
 </mapper>

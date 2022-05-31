@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.IOrderMapper">
+    <resultMap id="BaseResultMap" type="com.entity.order.Order">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="order_id" jdbcType="BIGINT" property="orderId"/>
+        <result column="order_no" jdbcType="VARCHAR" property="orderNo"/>
+        <result column="shop_id" jdbcType="BIGINT" property="shopId"/>
+        <result column="order_status" jdbcType="BIGINT" property="orderStatus"/>
+        <result column="buy_num" jdbcType="BIGINT" property="buyNum"/>
+        <result column="goods_no" jdbcType="BIGINT" property="goodsNo"/>
+        <result column="order_total_price" jdbcType="DECIMAL" property="orderTotalPrice"/>
+        <result column="goods_total_price" jdbcType="DECIMAL" property="goodsTotalPrice"/>
+        <result column="logistics_fee" jdbcType="DECIMAL" property="logisticsFee"/>
+        <result column="shipping_address" jdbcType="VARCHAR" property="shippingAddress"/>
+        <result column="order_logistics_id" jdbcType="BIGINT" property="orderLogisticsId"/>
+        <result column="pay_channel" jdbcType="BIGINT" property="payChannel"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="pay_date" jdbcType="TIMESTAMP" property="payDate"/>
+        <result column="ship_date" jdbcType="TIMESTAMP" property="shipDate"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="user_comment" jdbcType="VARCHAR" property="userComment"/>
+    </resultMap>
+    <!--add order-->
+    <insert id="createOrder" parameterType="com.controller.order.req.OrderRequest">
+        insert into ai_lu_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="buyNum != null">
+                buy_num,
+            </if>
+            <if test="goodsNo != null">
+                goods_no,
+            </if>
+            <if test="orderTotalPrice != null">
+                order_total_price,
+            </if>
+            <if test="logisticsFee != null">
+                logistics_fee,
+            </if>
+            <if test="shippingAddress != null">
+                shipping_address,
+            </if>
+            <if test="orderLogisticsId != null">
+                order_logistics_id,
+            </if>
+            <if test="payChannel != null">
+                pay_channel,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="userComment != null">
+                user_comment,
+            </if>
+            <if test="createDate != null">
+                create_date,
+            </if>
+            <if test="orderNO != null">
+                order_no,
+            </if>
+            <if test="goodsTotalPrice != null">
+                goods_total_price,
+            </if>
+            <if test="shopId != null">
+                shop_id,
+            </if>
+            <if test="orderStatus != null">
+                order_status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="buyNum != null">
+                #{buyNum},
+            </if>
+            <if test="goodsNo != null">
+                #{goodsNo},
+            </if>
+            <if test="orderTotalPrice != null">
+                #{orderTotalPrice},
+            </if>
+            <if test="logisticsFee != null">
+                #{logisticsFee},
+            </if>
+            <if test="shippingAddress != null">
+                #{shippingAddress},
+            </if>
+            <if test="orderLogisticsId != null">
+                #{orderLogisticsId},
+            </if>
+            <if test="payChannel != null">
+                #{payChannel},
+            </if>
+            <if test="userId != null">
+                #{userId},
+            </if>
+            <if test="userComment != null">
+                #{userComment},
+            </if>
+            <if test="createDate != null">
+                #{createDate},
+            </if>
+            <if test="orderNO != null">
+                #{orderNO},
+            </if>
+            <if test="goodsTotalPrice != null">
+                #{goodsTotalPrice},
+            </if>
+            <if test="shopId != null">
+                #{shopId},
+            </if>
+            <if test="orderStatus != null">
+                #{orderStatus},
+            </if>
+        </trim>
+    </insert>
+</mapper>

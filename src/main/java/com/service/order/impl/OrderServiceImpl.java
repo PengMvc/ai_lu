@@ -1,6 +1,7 @@
 package com.service.order.impl;
 
 import com.common.ailuenum.APICode;
+import com.common.ailuenum.OrderEnum;
 import com.controller.order.req.OrderRequest;
 import com.define.exception.APIException;
 import com.entity.goods.Goods;
@@ -8,10 +9,15 @@ import com.lock.AiLuLock;
 import com.mapper.IGoodsMapper;
 import com.mapper.IOrderMapper;
 import com.service.order.IOrderService;
+import com.until.BizNoGenerator;
+import com.until.DateUtil;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * order serviceImpl
@@ -59,7 +65,7 @@ public class OrderServiceImpl implements IOrderService {
             }
 
             // create order
-            orderMapper.createOrder(req);
+            orderMapper.createOrder(createOrderData(req,goods));
 
             // update inventory
             goodsMapper.updateGoodsInfo(createGoodsData(req.getGoodsNo(),remain));
@@ -76,5 +82,15 @@ public class OrderServiceImpl implements IOrderService {
         goods.setGoodsNum(remainNum);
         goods.setGoodsNo(goodsNo);
         return goods;
+    }
+
+    private OrderRequest createOrderData(OrderRequest req,Goods goods) {
+        req.setCreateDate(DateUtil.formatDate(new Date(),"yyyy-MM-dd HH:mm:ss"));
+        BigDecimal goodsTotalPrice = goods.getGoodsPrice().multiply(new BigDecimal(req.getBuyNum()));
+        req.setOrderTotalPrice(goodsTotalPrice.add(req.getLogisticsFee()));
+        req.setGoodsTotalPrice(goodsTotalPrice);
+        req.setOrderNO(BizNoGenerator.getOrderNo());
+        req.setOrderStatus(OrderEnum.NO_PAY.getCode());
+        return req;
     }
 }

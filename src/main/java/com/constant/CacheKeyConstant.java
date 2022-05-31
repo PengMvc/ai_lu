@@ -8,10 +8,10 @@ package com.constant;
 public class CacheKeyConstant {
 
     // 用户验证码key
-    public static final String USER_VERIFY_KEY="userVerifyKey_";
+    public static final String USER_VERIFY_KEY="USER_VERIFY_";
 
     // 用户身份证key
-    public static final String USER_IDENTITY="userIdentity_";
+    public static final String USER_IDENTITY="USER_IDENTITY_";
 
 }
 
