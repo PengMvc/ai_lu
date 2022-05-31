@@ -6,7 +6,6 @@
 
 #### 操作简单介绍
 
-环境配置：
 1.  搭建redis的哨兵模式
 2.  搭建mysql数据库，其它运行环境自己搭建这里不细说，如jdk、maven等
 3.  修改application.properties里的相关配置文件
