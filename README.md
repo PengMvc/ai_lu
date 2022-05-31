@@ -6,9 +6,13 @@
 
 #### 操作简单介绍
 
-1.  将项目在容器中部署，启动后
-2.  页面登录swagger,swagger地址：http://localhost:8080/swagger-ui.html
-3.  接下里就可以通过swagger对接口进行测试
+环境配置：
+1.  搭建redis的哨兵模式
+2.  搭建mysql数据库，其它运行环境自己搭建这里不细说，如jdk、maven等
+3.  修改application.properties里的相关配置文件
+4.  将项目在容器中部署，启动
+5.  页面登录swagger,swagger地址：http://localhost:8080/swagger-ui.html
+6.  接下里就可以通过swagger对接口进行测试
 
 
 #### 参与贡献
