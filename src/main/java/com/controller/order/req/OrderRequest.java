@@ -1,7 +1,6 @@
 package com.controller.order.req;
 
-import io.swagger.models.auth.In;
-
+import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -12,45 +11,50 @@ import java.util.Date;
 public class OrderRequest {
 
     /**order No*/
+    @ApiModelProperty(hidden = true)
     private String orderNO;
 
-    /**order num*/
+    @ApiModelProperty(value = "购买数量" ,required=true)
     private Integer buyNum;
 
-    /**goods no*/
+    @ApiModelProperty(value = "商品编号" ,required=true)
     private Integer goodsNo;
 
     /**the price of order*/
+    @ApiModelProperty(hidden = true)
     private BigDecimal orderTotalPrice;
 
-    /** logistics fee*/
+    @ApiModelProperty(value = "物流费用" ,required=true)
     private BigDecimal logisticsFee;
 
-    /**shipping address*/
+    @ApiModelProperty(value = "收货地址" ,required=true)
     private String shippingAddress;
 
-    /**the no of shipping*/
+    @ApiModelProperty(value = "物流方式" ,required=true)
     private Integer orderLogisticsId;
 
-    /**pay channel*/
+    @ApiModelProperty(value = "支付方式" ,required=true)
     private Integer payChannel;
 
-    /**userId*/
+    @ApiModelProperty(value = "客户id" ,required=true)
     private Integer userId;
 
-    /**user comment*/
+    @ApiModelProperty(value = "客户备注" ,required=true)
     private String userComment;
 
     /**create date*/
+    @ApiModelProperty(hidden = true)
     private Date createDate;
 
     /**goods total price*/
+    @ApiModelProperty(hidden = true)
     private BigDecimal goodsTotalPrice;
 
     /**the status of order*/
+    @ApiModelProperty(hidden = true)
     private Integer orderStatus;
 
-    /**ship id*/
+    @ApiModelProperty(value = "商店id" ,required=true)
     private Integer shopId;
 
     public BigDecimal getGoodsTotalPrice() {
