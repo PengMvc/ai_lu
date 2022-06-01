@@ -60,7 +60,7 @@
             <if test="createDate != null">
                 create_date,
             </if>
-            <if test="orderNO != null">
+            <if test="orderNo != null">
                 order_no,
             </if>
             <if test="goodsTotalPrice != null">
@@ -71,6 +71,9 @@
             </if>
             <if test="orderStatus != null">
                 order_status,
+            </if>
+            <if test="goodsName != null">
+                goods_name,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -105,8 +108,8 @@
             <if test="createDate != null">
                 #{createDate},
             </if>
-            <if test="orderNO != null">
-                #{orderNO},
+            <if test="orderNo != null">
+                #{orderNo},
             </if>
             <if test="goodsTotalPrice != null">
                 #{goodsTotalPrice},
@@ -116,6 +119,9 @@
             </if>
             <if test="orderStatus != null">
                 #{orderStatus},
+            </if>
+            <if test="goodsName != null">
+                #{goodsName},
             </if>
         </trim>
     </insert>

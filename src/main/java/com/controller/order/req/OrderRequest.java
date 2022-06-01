@@ -52,12 +52,23 @@ public class OrderRequest {
     @ApiModelProperty(value = "商店id" ,required=true)
     private Integer shopId;
 
+    @ApiModelProperty(value = "商品名称" ,hidden = true)
+    private String goodsName;
+
     public BigDecimal getGoodsTotalPrice() {
         return goodsTotalPrice;
     }
 
     public Integer getShopId() {
         return shopId;
+    }
+
+    public String getGoodsName() {
+        return goodsName;
+    }
+
+    public void setGoodsName(String goodsName) {
+        this.goodsName = goodsName;
     }
 
     public void setShopId(Integer shopId) {

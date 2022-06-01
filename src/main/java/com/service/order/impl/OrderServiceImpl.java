@@ -98,6 +98,7 @@ public class OrderServiceImpl implements IOrderService {
         req.setGoodsTotalPrice(goodsTotalPrice);
         req.setOrderNo(BizNoGenerator.getOrderNo(req.getOrderLogisticsId()));
         req.setOrderStatus(OrderEnum.NO_PAY.getCode());
+        req.setGoodsName(goods.getGoodsName());
         return req;
     }
 }
