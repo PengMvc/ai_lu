@@ -1,6 +1,7 @@
 package com.controller.goods.req;
 
 import com.common.PageRequest;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.math.BigDecimal;
 
@@ -11,25 +12,25 @@ import java.math.BigDecimal;
  */
 public class QueryGoodsRequest extends PageRequest {
 
-    /**goods name*/
+    @ApiModelProperty(value = "商品名称")
     private String goodsName;
 
-    /**goods price1*/
+    @ApiModelProperty(value = "商品价格区间最低价")
     private BigDecimal goodsPrice1;
 
-    /**goods price2*/
+    @ApiModelProperty(value = "商品价格区间最高价")
     private BigDecimal goodsPrice2;
 
-    /**goods first category*/
+    @ApiModelProperty(value = "商品一级分类")
     private String firstCategory;
 
-    /**goods second category*/
+    @ApiModelProperty(value = "商品二级分类")
     private String secondCategory;
 
-    /**goods third category*/
+    @ApiModelProperty(value = "商品三级分类")
     private String thirdCategory;
 
-    /**is on sale or not*/
+    @ApiModelProperty(value = "商品是否在售")
     private Integer isOnSale;
 
     public Integer getIsOnSale() {

@@ -1,5 +1,7 @@
 package com.controller.user.req;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * 注册请求报文
  * @Author: PengMvc
@@ -11,21 +13,24 @@ public class UserRequest {
     private String userName;
 
     /**用户手机*/
+    @ApiModelProperty(value = "用户手机号")
     private String userPhone;
 
-    /**登录密码*/
+    @ApiModelProperty(value = "用户登陆密码")
     private String loginPwd;
 
-    /**用户性别 0：male 1:female*/
+    @ApiModelProperty(value = "用户性别(0：male 1:female)")
     private String sex;
 
     /**用户薪水*/
+    @ApiModelProperty(hidden = true)
     private Integer salary;
 
     /**用户住址*/
+    @ApiModelProperty(hidden = true)
     private String userAddress;
 
-    /**用户身份证*/
+    @ApiModelProperty(value = "用户身份证")
     private String userIdentityCard;
 
     public String getUserName() {
