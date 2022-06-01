@@ -20,7 +20,7 @@ import javax.validation.constraints.Null;
  * @Date: 2022/05/27/16:50
  */
 @RequestMapping("/order")
-@Api(tags = {"04.订单相关接口"})
+@Api(tags = {"04.订单相关模块"})
 @Controller
 public class OrderController {
 

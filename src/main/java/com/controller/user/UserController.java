@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  **/
 @Controller
 @RequestMapping("/customer")
-@Api(tags = "02.用户相关接口")
+@Api(tags = "02.用户相关模块")
 public class UserController {
 
     @Autowired

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * @Author: PengMvc
  * @Date: 2022/05/26/11:25
  */
-@Api(tags = {"03.商品相关接口"})
+@Api(tags = {"03.商品相关模块"})
 @Controller
 @RequestMapping("goods")
 public class GoodsController {
