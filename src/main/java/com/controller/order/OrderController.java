@@ -3,6 +3,7 @@ package com.controller.order;
 import com.common.BaseResponse;
 import com.common.ailuenum.APICode;
 import com.controller.order.req.OrderRequest;
+import com.controller.order.res.OrderDetailResponse;
 import com.define.exception.VerifyParameterException;
 import com.entity.order.Order;
 import com.service.order.IOrderService;
@@ -43,7 +44,7 @@ public class OrderController {
     @ApiOperation("获取订单详情")
     @PostMapping("/getOrderDetail")
     @ResponseBody
-    public BaseResponse<Order> getOrderDetail(@RequestParam String orderNo,@RequestParam Integer userId) throws VerifyParameterException {
+    public BaseResponse<OrderDetailResponse> getOrderDetail(@RequestParam String orderNo, @RequestParam Integer userId) throws VerifyParameterException {
 
         // check param
         if(StringUtils.isBlank(orderNo) || userId == null){

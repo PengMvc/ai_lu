@@ -1,6 +1,7 @@
 package com.service.order;
 
 import com.controller.order.req.OrderRequest;
+import com.controller.order.res.OrderDetailResponse;
 import com.entity.order.Order;
 
 /**
@@ -12,5 +13,5 @@ public interface IOrderService {
 
     public void placeOrder(OrderRequest req);
 
-    public Order getOrderDetail(String orderNo,Integer userId);
+    public OrderDetailResponse getOrderDetail(String orderNo, Integer userId);
 }

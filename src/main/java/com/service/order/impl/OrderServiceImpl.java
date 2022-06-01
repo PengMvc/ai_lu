@@ -1,8 +1,11 @@
 package com.service.order.impl;
 
 import com.common.ailuenum.APICode;
+import com.common.ailuenum.LogisticsEnum;
 import com.common.ailuenum.OrderEnum;
+import com.common.ailuenum.PayEnum;
 import com.controller.order.req.OrderRequest;
+import com.controller.order.res.OrderDetailResponse;
 import com.define.exception.APIException;
 import com.entity.goods.Goods;
 import com.entity.order.Order;
@@ -87,8 +90,10 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public Order getOrderDetail(String orderNo,Integer userId) {
-        return orderMapper.getOrderDetail(orderNo, userId);
+    public OrderDetailResponse getOrderDetail(String orderNo, Integer userId) {
+        Order orderDetail = orderMapper.getOrderDetail(orderNo, userId);
+
+        return createOrderDetailRes(orderDetail);
     }
 
     private Goods createGoodsData(Integer goodsNo,Integer remainNum){
@@ -107,5 +112,24 @@ public class OrderServiceImpl implements IOrderService {
         req.setOrderStatus(OrderEnum.NO_PAY.getCode());
         req.setGoodsName(goods.getGoodsName());
         return req;
+    }
+
+    public OrderDetailResponse createOrderDetailRes(Order orderDetail){
+        OrderDetailResponse orderDetailRes = new OrderDetailResponse();
+        orderDetailRes.setCreateDate(orderDetail.getCreateDate());
+        orderDetailRes.setOrderNo(orderDetail.getOrderNo());
+        orderDetailRes.setGoodsName(orderDetail.getGoodsName());
+        orderDetailRes.setBuyNum(orderDetail.getBuyNum());
+        orderDetailRes.setOrderStatus(OrderEnum.getStatusMsg(orderDetail.getOrderStatus()));
+        orderDetailRes.setUserName(orderDetail.getUserName());
+        orderDetailRes.setGoodsTotalPrice(orderDetail.getGoodsTotalPrice());
+        orderDetailRes.setOrderTotalPrice(orderDetail.getOrderTotalPrice());
+        orderDetailRes.setLogisticsName(LogisticsEnum.getNameByCode(orderDetail.getOrderLogisticsId()));
+        orderDetailRes.setShippingAddress(orderDetail.getShippingAddress());
+        orderDetailRes.setUserComment(orderDetail.getUserComment());
+        orderDetailRes.setLogisticsFee(orderDetail.getLogisticsFee());
+        orderDetailRes.setShopId(orderDetail.getShopId());
+        orderDetailRes.setPayChannel(PayEnum.getPayName(orderDetail.getPayChannel()));
+        return orderDetailRes;
     }
 }

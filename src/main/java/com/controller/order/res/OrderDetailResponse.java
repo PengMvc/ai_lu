@@ -1,4 +1,4 @@
-package com.entity.order;
+package com.controller.order.res;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -7,12 +7,9 @@ import java.util.Date;
 
 /**
  * @Author: PengMvc
- * @Date: 2022/05/30/21:08
+ * @Date: 2022/06/01/20:10
  */
-public class Order {
-
-    /** order id*/
-    private Integer orderId;
+public class OrderDetailResponse {
 
     /**order no*/
     private String orderNo;
@@ -21,13 +18,10 @@ public class Order {
     private Integer shopId;
 
     /**order status(0：未付款，1：已付款，2：已发货,3：已签收,4：退货申请，5：退货中:，6：已退货,-1：取消交易)*/
-    private Integer orderStatus;
+    private String orderStatus;
 
     /**order num*/
     private Integer buyNum;
-
-    /**goods no*/
-    private Integer goodsNo;
 
     /**the price of order*/
     private BigDecimal orderTotalPrice;
@@ -41,11 +35,8 @@ public class Order {
     /**shipping address*/
     private String shippingAddress;
 
-    /**the no of shipping*/
-    private Integer orderLogisticsId;
-
     /**pay channel*/
-    private Integer payChannel;
+    private String payChannel;
 
     /**the create date of order*/
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
@@ -57,8 +48,6 @@ public class Order {
     /**ship date*/
     private Date shipDate;
 
-    /**userId*/
-    private Integer userId;
 
     /**user comment*/
     private String userComment;
@@ -69,32 +58,19 @@ public class Order {
     /**userName*/
     private String userName;
 
+    /**logistics name*/
+    private String logisticsName;
+
+    public String getOrderNo() {
+        return orderNo;
+    }
+
     public String getUserName() {
         return userName;
     }
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getGoodsName() {
-        return goodsName;
-    }
-
-    public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName;
-    }
-
-    public Integer getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
-
-    public String getOrderNo() {
-        return orderNo;
     }
 
     public void setOrderNo(String orderNo) {
@@ -109,11 +85,11 @@ public class Order {
         this.shopId = shopId;
     }
 
-    public Integer getOrderStatus() {
+    public String getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(Integer orderStatus) {
+    public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
     }
 
@@ -123,14 +99,6 @@ public class Order {
 
     public void setBuyNum(Integer buyNum) {
         this.buyNum = buyNum;
-    }
-
-    public Integer getGoodsNo() {
-        return goodsNo;
-    }
-
-    public void setGoodsNo(Integer goodsNo) {
-        this.goodsNo = goodsNo;
     }
 
     public BigDecimal getOrderTotalPrice() {
@@ -165,19 +133,19 @@ public class Order {
         this.shippingAddress = shippingAddress;
     }
 
-    public Integer getOrderLogisticsId() {
-        return orderLogisticsId;
+    public String getLogisticsName() {
+        return logisticsName;
     }
 
-    public void setOrderLogisticsId(Integer orderLogisticsId) {
-        this.orderLogisticsId = orderLogisticsId;
+    public void setLogisticsName(String logisticsName) {
+        this.logisticsName = logisticsName;
     }
 
-    public Integer getPayChannel() {
+    public String getPayChannel() {
         return payChannel;
     }
 
-    public void setPayChannel(Integer payChannel) {
+    public void setPayChannel(String payChannel) {
         this.payChannel = payChannel;
     }
 
@@ -205,19 +173,19 @@ public class Order {
         this.shipDate = shipDate;
     }
 
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
     public String getUserComment() {
         return userComment;
     }
 
     public void setUserComment(String userComment) {
         this.userComment = userComment;
+    }
+
+    public String getGoodsName() {
+        return goodsName;
+    }
+
+    public void setGoodsName(String goodsName) {
+        this.goodsName = goodsName;
     }
 }

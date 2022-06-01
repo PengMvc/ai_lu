@@ -25,6 +25,8 @@
         <result column="ship_date" jdbcType="TIMESTAMP" property="shipDate"/>
         <result column="user_id" jdbcType="BIGINT" property="userId"/>
         <result column="user_comment" jdbcType="VARCHAR" property="userComment"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -138,8 +140,13 @@
     </insert>
     <!--query order detail-->
     <select id="getOrderDetail" resultMap="BaseResultMap">
-        select <include refid="Base_Column_List" />  from
-        ai_lu_order alo where 1=1
+        select alo.order_no, alo.order_status,alo.shop_id,
+        alo.buy_num,alo.goods_name,alo.order_total_price,
+        alo.goods_total_price,alo.logistics_fee,alo.shipping_address,
+        alo.pay_channel,alo.create_date,alo.pay_date,alo.ship_date,
+        alo.user_comment,alo.order_logistics_id,alu.user_name from
+        ai_lu_order alo left join ai_lu_user alu on
+        alo.user_id = alu.user_id where 1=1
         <if test="userId != null">
             and alo.user_id = #{userId}
         </if>
