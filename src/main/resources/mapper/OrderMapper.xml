@@ -12,6 +12,7 @@
         <result column="shop_id" jdbcType="BIGINT" property="shopId"/>
         <result column="order_status" jdbcType="BIGINT" property="orderStatus"/>
         <result column="buy_num" jdbcType="BIGINT" property="buyNum"/>
+        <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
         <result column="goods_no" jdbcType="BIGINT" property="goodsNo"/>
         <result column="order_total_price" jdbcType="DECIMAL" property="orderTotalPrice"/>
         <result column="goods_total_price" jdbcType="DECIMAL" property="goodsTotalPrice"/>
@@ -25,6 +26,16 @@
         <result column="user_id" jdbcType="BIGINT" property="userId"/>
         <result column="user_comment" jdbcType="VARCHAR" property="userComment"/>
     </resultMap>
+
+    <sql id="Base_Column_List">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        order_id,order_no,shop_id,order_status,buy_num,goods_name,goods_no,order_total_price,
+        goods_total_price,logistics_fee,shipping_address,order_logistics_id,pay_channel,
+        create_date,pay_date,ship_date,user_id,user_comment
+    </sql>
+
     <!--add order-->
     <insert id="createOrder" parameterType="com.controller.order.req.OrderRequest">
         insert into ai_lu_order
@@ -125,4 +136,15 @@
             </if>
         </trim>
     </insert>
+    <!--query order detail-->
+    <select id="getOrderDetail" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />  from
+        ai_lu_order alo where 1=1
+        <if test="userId != null">
+            and alo.user_id = #{userId}
+        </if>
+        <if test="orderNo != null">
+            and alo.order_no = #{orderNo}
+        </if>
+    </select>
 </mapper>

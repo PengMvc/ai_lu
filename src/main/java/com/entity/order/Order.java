@@ -1,5 +1,7 @@
 package com.entity.order;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -46,6 +48,7 @@ public class Order {
     private Integer payChannel;
 
     /**the create date of order*/
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createDate;
 
     /**pay date*/
@@ -59,6 +62,17 @@ public class Order {
 
     /**user comment*/
     private String userComment;
+
+    /**goods name*/
+    private String goodsName;
+
+    public String getGoodsName() {
+        return goodsName;
+    }
+
+    public void setGoodsName(String goodsName) {
+        this.goodsName = goodsName;
+    }
 
     public Integer getOrderId() {
         return orderId;

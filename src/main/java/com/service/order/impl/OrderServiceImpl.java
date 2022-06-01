@@ -5,6 +5,7 @@ import com.common.ailuenum.OrderEnum;
 import com.controller.order.req.OrderRequest;
 import com.define.exception.APIException;
 import com.entity.goods.Goods;
+import com.entity.order.Order;
 import com.lock.AiLuLock;
 import com.mapper.IGoodsMapper;
 import com.mapper.IOrderMapper;
@@ -12,6 +13,7 @@ import com.service.order.IOrderService;
 import com.service.user.impl.UserServiceImpl;
 import com.until.BizNoGenerator;
 import com.until.DateUtil;
+import com.until.StringUtils;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
@@ -82,6 +84,11 @@ public class OrderServiceImpl implements IOrderService {
             placeOrderLock.unlock();
         }
 
+    }
+
+    @Override
+    public Order getOrderDetail(String orderNo,Integer userId) {
+        return orderMapper.getOrderDetail(orderNo, userId);
     }
 
     private Goods createGoodsData(Integer goodsNo,Integer remainNum){

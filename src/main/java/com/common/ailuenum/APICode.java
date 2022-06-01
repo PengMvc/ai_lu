@@ -20,7 +20,9 @@ public enum APICode {
     /**********************700-800订单相关****************************/
     INVENTORY_SHORTAGE(700,"库存不足"),
     FAIL_PLACE_ORDER(701,"用户下单失败"),
-    NOT_SUPPORT_L0GISTICS_MODE(702,"不支持该物流方式");
+    NOT_SUPPORT_L0GISTICS_MODE(702,"不支持该物流方式"),
+    SUCCESS_PLACE_ORDER(703,"恭喜您下单成功")
+    ;
 
     /**响应码*/
     private Integer code;

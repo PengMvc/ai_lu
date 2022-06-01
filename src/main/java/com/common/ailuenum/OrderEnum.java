@@ -41,4 +41,13 @@ public enum OrderEnum {
         this.code = code;
         this.msg = msg;
     }
+
+    public static String getStatusMsg(Integer code){
+        for (OrderEnum value : OrderEnum.values()) {
+            if(value.getCode().equals(code)){
+                return value.getMsg();
+            }
+        }
+        throw new IllegalArgumentException("未知的订单状态"+code);
+    }
 }
