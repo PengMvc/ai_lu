@@ -10,9 +10,8 @@ import java.util.Date;
  */
 public class OrderRequest {
 
-    /**order No*/
-    @ApiModelProperty(hidden = true)
-    private String orderNO;
+    @ApiModelProperty(hidden = true,value = "订单号")
+    private String orderNo;
 
     @ApiModelProperty(value = "购买数量" ,required=true)
     private Integer buyNum;
@@ -20,8 +19,7 @@ public class OrderRequest {
     @ApiModelProperty(value = "商品编号" ,required=true)
     private Integer goodsNo;
 
-    /**the price of order*/
-    @ApiModelProperty(hidden = true)
+    @ApiModelProperty(hidden = true,value="订单总价")
     private BigDecimal orderTotalPrice;
 
     @ApiModelProperty(value = "物流费用" ,required=true)
@@ -42,16 +40,13 @@ public class OrderRequest {
     @ApiModelProperty(value = "客户备注" ,required=true)
     private String userComment;
 
-    /**create date*/
-    @ApiModelProperty(hidden = true)
+    @ApiModelProperty(hidden = true,value = "订单创建时间")
     private Date createDate;
 
-    /**goods total price*/
-    @ApiModelProperty(hidden = true)
+    @ApiModelProperty(hidden = true,value="商品总价")
     private BigDecimal goodsTotalPrice;
 
-    /**the status of order*/
-    @ApiModelProperty(hidden = true)
+    @ApiModelProperty(hidden = true,value = "订单状态")
     private Integer orderStatus;
 
     @ApiModelProperty(value = "商店id" ,required=true)
@@ -97,12 +92,12 @@ public class OrderRequest {
         this.createDate = createDate;
     }
 
-    public String getOrderNO() {
-        return orderNO;
+    public String getOrderNo() {
+        return orderNo;
     }
 
-    public void setOrderNO(String orderNO) {
-        this.orderNO = orderNO;
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
     }
 
     public BigDecimal getOrderTotalPrice() {

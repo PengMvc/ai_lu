@@ -1,5 +1,7 @@
 package com.controller.user.req;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * 用户登录请求报文
  * @Author: PengMvc
@@ -7,13 +9,13 @@ package com.controller.user.req;
  */
 public class LoginRequest {
 
-    /**用户手机*/
+    @ApiModelProperty(value = "用户手机号",required = true)
     private String userPhone;
 
-    /**登录密码*/
+    @ApiModelProperty(value = "用户登陆密码",required = true)
     private String loginPwd;
 
-    /**验证码*/
+    @ApiModelProperty(value = "用户验证码",required = true)
     private String verifyCode;
 
     public String getVerifyCode() {

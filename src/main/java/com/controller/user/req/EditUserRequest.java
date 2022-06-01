@@ -1,5 +1,7 @@
 package com.controller.user.req;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * edit userRequest
  * mainly pwd and address
@@ -8,13 +10,13 @@ package com.controller.user.req;
  */
 public class EditUserRequest {
 
-    /**login password*/
+    @ApiModelProperty(value="用户登录密码")
     private String loginPwd;
 
-    /**user shipping address*/
+    @ApiModelProperty(value="用户登录地址")
     private String userAddress;
 
-    /**user identityCard*/
+    @ApiModelProperty(value="用户身份者号" ,required = true)
     private String userIdentityCard;
 
     public String getUserIdentityCard() {

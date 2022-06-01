@@ -36,7 +36,7 @@ public class UserController {
     public BaseResponse<Void> userRegister(@RequestBody UserRequest req) throws VerifyParameterException {
 
         // 核心参数校验
-        if(StringUtils.isBlank(req.getUserIdentityCard()) ||
+        if(StringUtils.isBlank(req.getUserIdentityCard()) || StringUtils.isBlank(req.getUserName()) ||
                 StringUtils.isBlank(req.getUserPhone()) || req.getLoginPwd() == null){
             throw new VerifyParameterException("用户注册缺少核心数据");
         }
@@ -67,7 +67,7 @@ public class UserController {
     public BaseResponse<Void>  editSingleUserInfo(@RequestBody EditUserRequest req) throws VerifyParameterException {
 
         // check necessary data
-        if(StringUtils.isBlank(req.getUserAddress()) || StringUtils.isBlank(req.getLoginPwd())){
+        if(StringUtils.isBlank(req.getUserAddress()) || StringUtils.isBlank(req.getLoginPwd()) || StringUtils.isBlank(req.getUserIdentityCard())){
             throw new VerifyParameterException("修改用户信息，缺少必传参数");
         }
 

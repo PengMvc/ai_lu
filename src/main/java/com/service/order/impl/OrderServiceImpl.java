@@ -96,7 +96,7 @@ public class OrderServiceImpl implements IOrderService {
         BigDecimal goodsTotalPrice = goods.getGoodsPrice().multiply(new BigDecimal(req.getBuyNum()));
         req.setOrderTotalPrice(goodsTotalPrice.add(req.getLogisticsFee()));
         req.setGoodsTotalPrice(goodsTotalPrice);
-        req.setOrderNO(BizNoGenerator.getOrderNo(req.getOrderLogisticsId()));
+        req.setOrderNo(BizNoGenerator.getOrderNo(req.getOrderLogisticsId()));
         req.setOrderStatus(OrderEnum.NO_PAY.getCode());
         return req;
     }

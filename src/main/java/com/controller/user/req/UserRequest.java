@@ -9,28 +9,25 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class UserRequest {
 
-    /**用户姓名*/
+    @ApiModelProperty(value = "用户姓名",required = true)
     private String userName;
 
-    /**用户手机*/
-    @ApiModelProperty(value = "用户手机号")
+    @ApiModelProperty(value = "用户手机号",required = true)
     private String userPhone;
 
-    @ApiModelProperty(value = "用户登陆密码")
+    @ApiModelProperty(value = "用户登陆密码",required = true)
     private String loginPwd;
 
     @ApiModelProperty(value = "用户性别(0：male 1:female)")
     private String sex;
 
-    /**用户薪水*/
-    @ApiModelProperty(hidden = true)
+    @ApiModelProperty(hidden = true,value = "用户薪水")
     private Integer salary;
 
-    /**用户住址*/
-    @ApiModelProperty(hidden = true)
+    @ApiModelProperty(hidden = true,value = "用户住址")
     private String userAddress;
 
-    @ApiModelProperty(value = "用户身份证")
+    @ApiModelProperty(value = "用户身份证",required = true)
     private String userIdentityCard;
 
     public String getUserName() {
