@@ -1,5 +1,6 @@
 package com.service.goods;
 
+import com.controller.goods.req.EditGoodsRequest;
 import com.controller.goods.req.QueryGoodsRequest;
 import com.entity.goods.Goods;
 import com.github.pagehelper.PageInfo;
@@ -23,4 +24,10 @@ public interface IGoodsService {
      * @return
      */
     public Goods queryGoodsDetail(Integer goodsNo);
+
+    /**
+     * 修改商品信息
+     * @param req
+     */
+    public void editGoodsInfo(EditGoodsRequest req);
 }

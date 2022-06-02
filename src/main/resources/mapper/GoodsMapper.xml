@@ -64,7 +64,25 @@
         update ai_lu_goods alg
         <set>
             <if test="goodsNum != null">
-                alg.goods_num = #{goodsNum}
+                alg.goods_num = #{goodsNum},
+            </if>
+            <if test="goodsName != null">
+                alg.goods_name = #{goodsName},
+            </if>
+            <if test="goodsPrice != null">
+                alg.goods_price = #{goodsPrice},
+            </if>
+            <if test="goodsSource != null">
+                alg.goods_source = #{goodsSource},
+            </if>
+            <if test="goodsDesc != null">
+                alg.goods_desc = #{goodsDesc},
+            </if>
+            <if test="goodsSendLocation != null">
+                alg.goods_send_location = #{goodsSendLocation},
+            </if>
+            <if test="goodsImg != null">
+                alg.goods_img = #{goodsImg}
             </if>
         </set>
 

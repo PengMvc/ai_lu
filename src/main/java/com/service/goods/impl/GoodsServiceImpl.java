@@ -1,5 +1,6 @@
 package com.service.goods.impl;
 
+import com.controller.goods.req.EditGoodsRequest;
 import com.controller.goods.req.QueryGoodsRequest;
 import com.entity.goods.Goods;
 import com.github.pagehelper.PageHelper;
@@ -40,6 +41,24 @@ public class GoodsServiceImpl implements IGoodsService {
     @Override
     public Goods queryGoodsDetail(Integer goodsNo) {
         Goods goods = goodsMapper.queryGoodsDetail(goodsNo);
+        return goods;
+    }
+
+    @Override
+    public void editGoodsInfo(EditGoodsRequest req) {
+        goodsMapper.updateGoodsInfo(createEditGoodsData(req));
+    }
+
+    private Goods createEditGoodsData(EditGoodsRequest req){
+        Goods goods = new Goods();
+        goods.setGoodsNo(req.getGoodsNo());
+        goods.setGoodsNum(req.getGoodsNum());
+        goods.setGoodsDesc(req.getGoodsDesc());
+        goods.setGoodsPrice(req.getGoodsPrice());
+        goods.setGoodsSendLocation(req.getGoodsSendLocation());
+        goods.setGoodsSource(req.getGoodsSource());
+        goods.setGoodsImg(req.getGoodsImg());
+        goods.setGoodsName(req.getGoodsName());
         return goods;
     }
 }

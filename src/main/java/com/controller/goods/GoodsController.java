@@ -1,6 +1,8 @@
 package com.controller.goods;
 
 import com.common.BaseResponse;
+import com.common.ailuenum.APICode;
+import com.controller.goods.req.EditGoodsRequest;
 import com.controller.goods.req.QueryGoodsRequest;
 import com.define.exception.VerifyParameterException;
 import com.entity.goods.Goods;
@@ -49,5 +51,20 @@ public class GoodsController {
 
         // get goodsDetail
         return BaseResponse.success(goodService.queryGoodsDetail(goodsNo));
+    }
+
+    @PostMapping("/editGoods")
+    @ApiOperation("修改商品信息")
+    @ResponseBody
+    public BaseResponse<String> editGoodsInfo(@RequestBody EditGoodsRequest req) throws VerifyParameterException {
+
+        // check param
+        if(req.getGoodsNo() == null){
+            throw new VerifyParameterException("修改商品信息缺少必传参数");
+        }
+
+        // edit goodsInfo
+        goodService.editGoodsInfo(req);
+        return BaseResponse.success(APICode.SUCCESS_EDIT_GOODSINFO.getMessage());
     }
 }

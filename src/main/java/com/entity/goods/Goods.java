@@ -80,10 +80,6 @@ public class Goods {
         return goodsPrice;
     }
 
-    public void setGoodsPrice(Float goodsPrice) {
-        this.goodsPrice = BigDecimal.valueOf(goodsPrice);
-    }
-
     public String getFirstCategory() {
         return firstCategory;
     }
