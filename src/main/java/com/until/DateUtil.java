@@ -36,4 +36,20 @@ public class DateUtil {
         return formateDate;
     }
 
+    /**
+     * get String date
+     * @param date
+     * @param format
+     * @return strDate
+     */
+    public  static String getStringDate(Date date,String format){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+        String strDate = null;
+        try {
+             strDate = simpleDateFormat.format(date);
+        } catch (Exception e) {
+            logger.error("get str date exception!",e);
+        }
+        return strDate;
+    }
 }

@@ -4,15 +4,25 @@ import com.common.BaseResponse;
 import com.common.ailuenum.APICode;
 import com.controller.goods.req.EditGoodsRequest;
 import com.controller.goods.req.QueryGoodsRequest;
+import com.controller.goods.res.GoodsExcelResponse;
 import com.define.exception.VerifyParameterException;
 import com.entity.goods.Goods;
 import com.github.pagehelper.PageInfo;
+import com.mapper.IGoodsMapper;
 import com.service.goods.IGoodsService;
+import com.until.AssertUtil;
+import com.until.BeanUtil;
+import com.until.DateUtil;
+import com.until.ExcelUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -28,6 +38,10 @@ public class GoodsController {
     @Autowired
     private IGoodsService goodService;
 
+    @Autowired
+    private IGoodsMapper goodsMapper;
+
+    private static final String fileName = "Goods_list_"+ DateUtil.getStringDate(new Date(),"yyyy-MM-dd");
     @PostMapping("/getGoodsPage")
     @ApiOperation("按照条件查询商品信息分页展示")
     @ResponseBody
@@ -66,5 +80,25 @@ public class GoodsController {
         // edit goodsInfo
         goodService.editGoodsInfo(req);
         return BaseResponse.success(APICode.SUCCESS_EDIT_GOODSINFO.getMessage());
+    }
+
+    @PostMapping("/exportGoodsExcel")
+    @ApiOperation("导出商品信息")
+    @ResponseBody
+    public void exportGoodsInfo(@RequestBody QueryGoodsRequest req,HttpServletResponse response){
+
+        // get goods list
+        List<Goods> goodsList = goodsMapper.queryGoodsPage(req);
+
+        // check size
+        AssertUtil.isTrue(goodsList.size()>10000,"导出的商品信息太多，服务端不支持");
+        List<GoodsExcelResponse> goodsExcelResponses = BeanUtil.copyBeanFromNewList(goodsList, GoodsExcelResponse.class);
+        for (int i = 0; i < goodsExcelResponses.size();i++){
+            goodsExcelResponses.get(i).setIndex(i+1);
+        }
+
+        // export goods excel
+        ExcelUtils.writeExcel(response,goodsExcelResponses,GoodsExcelResponse.class,fileName,"商品列表");
+
     }
 }

@@ -38,7 +38,13 @@ public class AssertUtil {
 			throwApiException(apiCode);
 		}
 	}
-	
+
+	public static void isTrue(boolean expression,String messsage){
+		if(expression){
+			throw new IllegalArgumentException(messsage);
+		}
+	}
+
 	public static void isTrue(boolean expression, APICode apiCode, String message) {
 		if (!expression) {
 			throwApiException(apiCode, message);
