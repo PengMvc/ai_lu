@@ -154,4 +154,16 @@
             and alo.order_no = #{orderNo}
         </if>
     </select>
+    <!--query orderpage-->
+    <select id="queryOrdersPageByCondition" parameterType="com.controller.order.req.OrderPageRequest"
+    resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from ai_lu_order alo where 1=1
+        <if test="userId != null">
+            and alo.user_id = #{userId}
+        </if>
+        <if test="orderStatus != null">
+            and alo.order_status = #{orderStatus}
+        </if>
+    </select>
 </mapper>

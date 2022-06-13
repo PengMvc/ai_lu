@@ -4,11 +4,14 @@ import com.common.ailuenum.APICode;
 import com.common.ailuenum.LogisticsEnum;
 import com.common.ailuenum.OrderEnum;
 import com.common.ailuenum.PayEnum;
+import com.controller.order.req.OrderPageRequest;
 import com.controller.order.req.OrderRequest;
 import com.controller.order.res.OrderDetailResponse;
 import com.define.exception.APIException;
 import com.entity.goods.Goods;
 import com.entity.order.Order;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.lock.AiLuLock;
 import com.mapper.IGoodsMapper;
 import com.mapper.IOrderMapper;
@@ -23,9 +26,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * order serviceImpl
@@ -94,6 +99,22 @@ public class OrderServiceImpl implements IOrderService {
         Order orderDetail = orderMapper.getOrderDetail(orderNo, userId);
 
         return createOrderDetailRes(orderDetail);
+    }
+
+    @Override
+    public PageInfo<Order> getOrdersPageByCondition(OrderPageRequest req) {
+
+        // init pageHelper
+        PageHelper.startPage(req.getPageNo(),req.getPageSize());
+
+        // get orderList
+        List<Order> orderList = orderMapper.queryOrdersPageByCondition(req);
+
+        // check
+        if(CollectionUtils.isEmpty(orderList)){
+            return new PageInfo<>();
+        }
+        return new PageInfo<Order>(orderList);
     }
 
     private Goods createGoodsData(Integer goodsNo,Integer remainNum){
