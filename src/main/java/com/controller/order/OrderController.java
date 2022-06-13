@@ -68,4 +68,18 @@ public class OrderController {
         // get orderList
         return BaseResponse.success(orderService.getOrdersPageByCondition(req));
     }
+
+    @PostMapping("/deleteOrder")
+    @ApiOperation("删除订单")
+    @ResponseBody
+    public BaseResponse<String> deleteOrderByOrderNo(@RequestParam String orderNo,@RequestParam Integer userId) throws VerifyParameterException {
+
+        // check param
+        if(StringUtils.isBlank(orderNo) || userId == null){
+            throw new VerifyParameterException("删除订单缺少必传参数");        }
+
+        // delete order
+        orderService.deleteOrder(orderNo,userId);
+        return BaseResponse.success(APICode.SUCCESS_DELETE_ORDER.getMessage());
+    }
 }

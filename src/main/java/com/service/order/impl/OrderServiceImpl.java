@@ -117,6 +117,11 @@ public class OrderServiceImpl implements IOrderService {
         return new PageInfo<Order>(orderList);
     }
 
+    @Override
+    public void deleteOrder(String orderNo, Integer userId) {
+        orderMapper.deleteOrder(orderNo,userId);
+    }
+
     private Goods createGoodsData(Integer goodsNo,Integer remainNum){
         Goods goods = new Goods();
         goods.setGoodsNum(remainNum);

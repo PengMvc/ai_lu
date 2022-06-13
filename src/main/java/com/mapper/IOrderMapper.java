@@ -24,4 +24,11 @@ public interface IOrderMapper {
      * @return orderList
      */
     public List<Order> queryOrdersPageByCondition(OrderPageRequest req);
+
+    /**
+     * delete order
+     * @param orderNo
+     * @param userId
+     */
+    public void deleteOrder(@Param("orderNo") String orderNo,@Param("userId") Integer userId);
 }

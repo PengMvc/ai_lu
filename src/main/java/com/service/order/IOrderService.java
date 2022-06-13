@@ -18,4 +18,6 @@ public interface IOrderService {
     public OrderDetailResponse getOrderDetail(String orderNo, Integer userId);
 
     public PageInfo<Order> getOrdersPageByCondition(OrderPageRequest req);
+
+    public void deleteOrder(String orderNo,Integer userId);
 }

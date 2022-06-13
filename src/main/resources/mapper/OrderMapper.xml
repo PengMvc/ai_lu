@@ -154,6 +154,7 @@
             and alo.order_no = #{orderNo}
         </if>
     </select>
+
     <!--query orderpage-->
     <select id="queryOrdersPageByCondition" parameterType="com.controller.order.req.OrderPageRequest"
     resultMap="BaseResultMap">
@@ -166,4 +167,11 @@
             and alo.order_status = #{orderStatus}
         </if>
     </select>
+
+    <!--delete order-->
+    <delete id="deleteOrder">
+        delete from ai_lu_order alo
+        where alo.order_no = #{orderNo}
+            and alo.user_id = #{userId}
+     </delete>
 </mapper>
