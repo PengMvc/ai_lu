@@ -25,7 +25,8 @@ public enum APICode {
     SUCCESS_DELETE_ORDER(704,"删除订单成功"),
 
     /*********************800-899商品相关****************************/
-    SUCCESS_EDIT_GOODSINFO(800,"修改商品信息成功");
+    SUCCESS_EDIT_GOODSINFO(800,"修改商品信息成功"),
+    SUCCESS_ADD_GOODSINFO(801,"新增商品信息成功");
     /**响应码*/
     private Integer code;
 

@@ -89,4 +89,86 @@
         where alg.goods_no = #{goodsNo}
     </update>
 
+    <insert id="addGoodsInfo" parameterType="com.controller.goods.req.AddGoodsRequest">
+        insert into ai_lu_goods
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="goodsName != null">
+                goods_name,
+            </if>
+            <if test="goodsPrice != null">
+                goods_price,
+            </if>
+            <if test="firstCategory != null">
+                first_category,
+            </if>
+            <if test="secondCategory != null">
+                second_category,
+            </if>
+            <if test="thirdCategory != null">
+                third_category,
+            </if>
+            <if test="goodsNo != null">
+                goods_no,
+            </if>
+            <if test="goodsNum != null">
+                goods_num,
+            </if>
+            <if test="goodsSource != null">
+                goods_source,
+            </if>
+            <if test="isOnSale != null">
+                is_on_sale,
+            </if>
+            <if test="goodsDesc != null">
+                goods_desc,
+            </if>
+            <if test="goodsSendLocation != null">
+                goods_send_location,
+            </if>
+            <if test="goodsImg != null">
+                goods_img,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="goodsName != null">
+                #{goodsName},
+            </if>
+            <if test="goodsPrice != null">
+                #{goodsPrice},
+            </if>
+            <if test="firstCategory != null">
+                #{firstCategory},
+            </if>
+            <if test="secondCategory != null">
+                #{secondCategory},
+            </if>
+            <if test="thirdCategory != null">
+                #{thirdCategory},
+            </if>
+            <if test="goodsNo != null">
+                #{goodsNo},
+            </if>
+            <if test="goodsNum != null">
+                #{goodsNum},
+            </if>
+            <if test="goodsSource != null">
+                #{goodsSource},
+            </if>
+            <if test="isOnSale != null">
+                #{isOnSale},
+            </if>
+            <if test="goodsDesc != null">
+                #{goodsDesc},
+            </if>
+            <if test="goodsSendLocation != null">
+                #{goodsSendLocation},
+            </if>
+            <if test="goodsImg != null">
+                #{goodsImg},
+            </if>
+        </trim>
+    </insert>
+
 </mapper>

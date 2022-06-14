@@ -1,5 +1,6 @@
 package com.service.goods;
 
+import com.controller.goods.req.AddGoodsRequest;
 import com.controller.goods.req.EditGoodsRequest;
 import com.controller.goods.req.QueryGoodsRequest;
 import com.entity.goods.Goods;
@@ -30,4 +31,10 @@ public interface IGoodsService {
      * @param req
      */
     public void editGoodsInfo(EditGoodsRequest req);
+
+    /**
+     * add single goods
+     * @param req
+     */
+    public void addGoodsInfo(AddGoodsRequest req);
 }

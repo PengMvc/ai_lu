@@ -12,6 +12,7 @@ import java.util.Random;
  * @Date: 2022/05/31/16:26
  */
 public class BizNoGenerator {
+
     /**
      * SF220531183155622
      * @param orderLogisticsId
@@ -56,5 +57,20 @@ public class BizNoGenerator {
                 throw new APIException(APICode.NOT_SUPPORT_L0GISTICS_MODE);
         }
         return  prefix;
+    }
+
+    /**
+     * get unique value for project
+     * @return unique value
+     */
+    public static String getUniqueValue(){
+        SimpleDateFormat format = new SimpleDateFormat("yyMMddHHmmss");
+        String nowDate = format.format(new Date());
+        String retult = "";
+        Random random = new Random();
+        for(int i=0;i<3;i++){
+            retult+=random.nextInt(10);
+        }
+        return nowDate+retult;
     }
 }

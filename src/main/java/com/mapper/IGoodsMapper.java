@@ -1,5 +1,6 @@
 package com.mapper;
 
+import com.controller.goods.req.AddGoodsRequest;
 import com.controller.goods.req.QueryGoodsRequest;
 import com.entity.goods.Goods;
 
@@ -30,4 +31,6 @@ public interface IGoodsMapper {
      * @param goods
      */
     public void updateGoodsInfo(Goods goods);
+
+    public void addGoodsInfo(AddGoodsRequest req);
 }

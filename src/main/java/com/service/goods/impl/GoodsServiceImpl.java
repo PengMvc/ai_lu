@@ -1,5 +1,6 @@
 package com.service.goods.impl;
 
+import com.controller.goods.req.AddGoodsRequest;
 import com.controller.goods.req.EditGoodsRequest;
 import com.controller.goods.req.QueryGoodsRequest;
 import com.entity.goods.Goods;
@@ -7,6 +8,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mapper.IGoodsMapper;
 import com.service.goods.IGoodsService;
+import com.until.BizNoGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -47,6 +49,13 @@ public class GoodsServiceImpl implements IGoodsService {
     @Override
     public void editGoodsInfo(EditGoodsRequest req) {
         goodsMapper.updateGoodsInfo(createEditGoodsData(req));
+    }
+
+    @Override
+    public void addGoodsInfo(AddGoodsRequest req) {
+        // set goodsNo
+        req.setGoodsNo(BizNoGenerator.getUniqueValue());
+        goodsMapper.addGoodsInfo(req);
     }
 
     private Goods createEditGoodsData(EditGoodsRequest req){

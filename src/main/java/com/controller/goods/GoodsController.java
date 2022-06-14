@@ -2,6 +2,7 @@ package com.controller.goods;
 
 import com.common.BaseResponse;
 import com.common.ailuenum.APICode;
+import com.controller.goods.req.AddGoodsRequest;
 import com.controller.goods.req.EditGoodsRequest;
 import com.controller.goods.req.QueryGoodsRequest;
 import com.controller.goods.res.GoodsExcelResponse;
@@ -10,10 +11,7 @@ import com.entity.goods.Goods;
 import com.github.pagehelper.PageInfo;
 import com.mapper.IGoodsMapper;
 import com.service.goods.IGoodsService;
-import com.until.AssertUtil;
-import com.until.BeanUtil;
-import com.until.DateUtil;
-import com.until.ExcelUtils;
+import com.until.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +40,7 @@ public class GoodsController {
     private IGoodsMapper goodsMapper;
 
     private static final String fileName = "Goods_list_"+ DateUtil.getStringDate(new Date(),"yyyy-MM-dd");
+
     @PostMapping("/getGoodsPage")
     @ApiOperation("按照条件查询商品信息分页展示")
     @ResponseBody
@@ -58,6 +57,7 @@ public class GoodsController {
     @ApiOperation("查询商品详情")
     @ResponseBody
     public BaseResponse<Goods> queryGoodsDetail(@RequestParam Integer goodsNo) throws VerifyParameterException {
+
         // check param
         if(goodsNo == null){
             throw new VerifyParameterException("查询商品详情时，缺少商品编号必传参数");
@@ -100,5 +100,30 @@ public class GoodsController {
         // export goods excel
         ExcelUtils.writeExcel(response,goodsExcelResponses,GoodsExcelResponse.class,fileName,"商品列表");
 
+    }
+
+    @PostMapping("/addSingleGoods")
+    @ApiOperation("新增商品信息")
+    @ResponseBody
+    public BaseResponse<String> addGoodsInfo(@RequestBody AddGoodsRequest req) throws VerifyParameterException {
+
+        // check param
+        if(checkParam(req)){
+            throw new VerifyParameterException("新增商品缺少必传参数");
+        }
+
+        // add single goods
+        goodService.addGoodsInfo(req);
+
+        return BaseResponse.success(APICode.SUCCESS_ADD_GOODSINFO.getMessage());
+    }
+
+    private Boolean checkParam(AddGoodsRequest req){
+        if(req.getGoodsNum() == null || req.getGoodsPrice() ==null || req.getIsOnSale() ==null || StringUtils.isBlank(req.getGoodsDesc()) ||
+                StringUtils.isBlank(req.getFirstCategory())||StringUtils.isBlank(req.getGoodsName()) || StringUtils.isBlank(req.getGoodsSource())||
+        StringUtils.isBlank(req.getSecondCategory()) || StringUtils.isBlank(req.getThirdCategory()) || StringUtils.isBlank(req.getGoodsImg()) || StringUtils.isBlank(req.getGoodsSendLocation())){
+            return true;
+        }
+        return false;
     }
 }
