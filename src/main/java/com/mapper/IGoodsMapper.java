@@ -3,6 +3,7 @@ package com.mapper;
 import com.controller.goods.req.AddGoodsRequest;
 import com.controller.goods.req.QueryGoodsRequest;
 import com.entity.goods.Goods;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -33,4 +34,6 @@ public interface IGoodsMapper {
     public void updateGoodsInfo(Goods goods);
 
     public void addGoodsInfo(AddGoodsRequest req);
+
+    public Long deleteGoodsInfo(@Param("goodsNo") String goodsNo);
 }

@@ -170,5 +170,9 @@
             </if>
         </trim>
     </insert>
-
+    <!--delete single goods-->
+    <delete id="deleteGoodsInfo">
+        delete from ai_lu_goods where
+        goods_no = #{goodsNo}
+    </delete>
 </mapper>

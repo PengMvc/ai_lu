@@ -26,7 +26,10 @@ public enum APICode {
 
     /*********************800-899商品相关****************************/
     SUCCESS_EDIT_GOODSINFO(800,"修改商品信息成功"),
-    SUCCESS_ADD_GOODSINFO(801,"新增商品信息成功");
+    SUCCESS_ADD_GOODSINFO(801,"新增商品信息成功"),
+    SUCCESS_DELETE_GOODS(802,"删除商品信息成功"),
+    FAIL_DELETE_GOODS(803,"删除商品信息失败")
+    ;
     /**响应码*/
     private Integer code;
 

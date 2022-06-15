@@ -126,4 +126,19 @@ public class GoodsController {
         }
         return false;
     }
+    @PostMapping("/deleteSingleGoods")
+    @ApiOperation("删除商品")
+    @ResponseBody
+    public BaseResponse<String> deleteGoods(@RequestParam String goodsNo) throws VerifyParameterException {
+
+        // check param
+        if(StringUtils.isBlank(goodsNo)){
+            throw new VerifyParameterException("删除商品缺少必传参数");
+        }
+
+        // delete single goods
+        goodService.deleteGoodsInfo(goodsNo);
+
+        return BaseResponse.success(APICode.SUCCESS_DELETE_GOODS.getMessage());
+    }
 }

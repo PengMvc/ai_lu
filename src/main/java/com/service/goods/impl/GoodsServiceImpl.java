@@ -1,8 +1,10 @@
 package com.service.goods.impl;
 
+import com.common.ailuenum.APICode;
 import com.controller.goods.req.AddGoodsRequest;
 import com.controller.goods.req.EditGoodsRequest;
 import com.controller.goods.req.QueryGoodsRequest;
+import com.define.exception.APIException;
 import com.entity.goods.Goods;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -56,6 +58,14 @@ public class GoodsServiceImpl implements IGoodsService {
         // set goodsNo
         req.setGoodsNo(BizNoGenerator.getUniqueValue());
         goodsMapper.addGoodsInfo(req);
+    }
+
+    @Override
+    public void deleteGoodsInfo(String goodsNo) {
+        Long deleteNum = goodsMapper.deleteGoodsInfo(goodsNo);
+        if(deleteNum!=1){
+            throw new APIException(APICode.FAIL_DELETE_GOODS);
+        }
     }
 
     private Goods createEditGoodsData(EditGoodsRequest req){

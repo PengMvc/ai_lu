@@ -37,4 +37,10 @@ public interface IGoodsService {
      * @param req
      */
     public void addGoodsInfo(AddGoodsRequest req);
+
+    /**
+     * delete single goods
+     * @param goodsNo
+     */
+    public void deleteGoodsInfo(String goodsNo);
 }
