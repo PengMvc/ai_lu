@@ -20,6 +20,7 @@ import com.service.user.impl.UserServiceImpl;
 import com.until.BizNoGenerator;
 import com.until.DateUtil;
 import com.until.StringUtils;
+import io.swagger.annotations.Api;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
@@ -119,7 +120,10 @@ public class OrderServiceImpl implements IOrderService {
 
     @Override
     public void deleteOrder(String orderNo, Integer userId) {
-        orderMapper.deleteOrder(orderNo,userId);
+        Long deleteNum = orderMapper.deleteOrder(orderNo, userId);
+        if(deleteNum != 1){
+            throw new APIException(APICode.FAIL_DELETE_ORDER);
+        }
     }
 
     private Goods createGoodsData(Integer goodsNo,Integer remainNum){

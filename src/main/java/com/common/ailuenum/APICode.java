@@ -23,6 +23,7 @@ public enum APICode {
     NOT_SUPPORT_L0GISTICS_MODE(702,"不支持该物流方式"),
     SUCCESS_PLACE_ORDER(703,"恭喜您下单成功"),
     SUCCESS_DELETE_ORDER(704,"删除订单成功"),
+    FAIL_DELETE_ORDER(705,"删除订单失败"),
 
     /*********************800-899商品相关****************************/
     SUCCESS_EDIT_GOODSINFO(800,"修改商品信息成功"),

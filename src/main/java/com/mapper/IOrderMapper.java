@@ -30,5 +30,5 @@ public interface IOrderMapper {
      * @param orderNo
      * @param userId
      */
-    public void deleteOrder(@Param("orderNo") String orderNo,@Param("userId") Integer userId);
+    public Long deleteOrder(@Param("orderNo") String orderNo,@Param("userId") Integer userId);
 }
