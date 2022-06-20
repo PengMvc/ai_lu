@@ -158,8 +158,12 @@
     <!--query orderpage-->
     <select id="queryOrdersPageByCondition" parameterType="com.controller.order.req.OrderPageRequest"
     resultMap="BaseResultMap">
-        select <include refid="Base_Column_List"/>
-        from ai_lu_order alo where 1=1
+        select alo.*
+        ,alu.user_name from ai_lu_order alo
+        left join
+        ai_lu_user alu
+        on alo.user_id = alu.user_id
+        where 1=1
         <if test="userId != null">
             and alo.user_id = #{userId}
         </if>
