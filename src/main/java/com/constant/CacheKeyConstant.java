@@ -13,5 +13,8 @@ public class CacheKeyConstant {
     // 用户身份证key
     public static final String USER_IDENTITY="USER_IDENTITY_";
 
+    // 商品详情
+    public static final String GOODS_DETAIL="GOODS_DETAIL_";
+
 }
 

@@ -1,6 +1,8 @@
 package com.service.goods.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.common.ailuenum.APICode;
+import com.constant.CacheKeyConstant;
 import com.controller.goods.req.AddGoodsRequest;
 import com.controller.goods.req.EditGoodsRequest;
 import com.controller.goods.req.QueryGoodsRequest;
@@ -9,11 +11,14 @@ import com.entity.goods.Goods;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mapper.IGoodsMapper;
+import com.redis.RedisUtil;
 import com.service.goods.IGoodsService;
 import com.until.BizNoGenerator;
+import com.until.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import springfox.documentation.spring.web.json.Json;
 
 import java.util.List;
 
@@ -26,6 +31,9 @@ public class GoodsServiceImpl implements IGoodsService {
 
     @Autowired
     private IGoodsMapper goodsMapper;
+
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Override
     public PageInfo<Goods> queryGoodsListPage(QueryGoodsRequest req) {
@@ -44,7 +52,21 @@ public class GoodsServiceImpl implements IGoodsService {
 
     @Override
     public Goods queryGoodsDetail(Integer goodsNo) {
+
+        // cache goods key
+        String goodsKey = CacheKeyConstant.GOODS_DETAIL+goodsNo;
+
+        // check redis if exist goods detail
+        String goodsString = redisUtil.get(goodsKey);
+        if(!StringUtils.isBlank(goodsString)){
+            return JSON.parseObject(goodsString, Goods.class);
+        }
+
+        // query goods from redis
         Goods goods = goodsMapper.queryGoodsDetail(goodsNo);
+
+        // cache goodsDetail one month
+        redisUtil.set(goodsKey, JSON.toJSONString(goods),431200);
         return goods;
     }
 
