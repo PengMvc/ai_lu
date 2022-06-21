@@ -1,9 +1,11 @@
 package com.service.order.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.common.ailuenum.APICode;
 import com.common.ailuenum.LogisticsEnum;
 import com.common.ailuenum.OrderEnum;
 import com.common.ailuenum.PayEnum;
+import com.constant.CacheKeyConstant;
 import com.controller.order.req.OrderPageRequest;
 import com.controller.order.req.OrderRequest;
 import com.controller.order.res.OrderDetailResponse;
@@ -15,6 +17,7 @@ import com.github.pagehelper.PageInfo;
 import com.lock.AiLuLock;
 import com.mapper.IGoodsMapper;
 import com.mapper.IOrderMapper;
+import com.redis.RedisUtil;
 import com.service.order.IOrderService;
 import com.service.user.impl.UserServiceImpl;
 import com.until.BizNoGenerator;
@@ -54,6 +57,9 @@ public class OrderServiceImpl implements IOrderService {
 
     @Autowired
     private IGoodsMapper goodsMapper;
+
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Override
     public void placeOrder(OrderRequest req) {
@@ -97,8 +103,21 @@ public class OrderServiceImpl implements IOrderService {
 
     @Override
     public OrderDetailResponse getOrderDetail(String orderNo, Integer userId) {
+
+        // order key
+        String orderKey = CacheKeyConstant.ORDER_DETAIL + userId +"_"+orderNo;
+        String strOrderDetail = redisUtil.get(orderKey);
+
+        // check if exist orderDetail in cache
+        if(!StringUtils.isBlank(strOrderDetail)){
+            return createOrderDetailRes(JSON.parseObject(strOrderDetail,Order.class));
+        }
+
+        // query orderDetail from db
         Order orderDetail = orderMapper.getOrderDetail(orderNo, userId);
 
+        // store to cahce
+        redisUtil.set(orderKey,JSON.toJSONString(orderDetail));
         return createOrderDetailRes(orderDetail);
     }
 

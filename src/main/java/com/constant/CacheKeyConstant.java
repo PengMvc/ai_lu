@@ -16,5 +16,7 @@ public class CacheKeyConstant {
     // 商品详情
     public static final String GOODS_DETAIL="GOODS_DETAIL_";
 
+    // 订单详情
+    public static final String ORDER_DETAIL="ORDER_DETAIL_";
 }
 
