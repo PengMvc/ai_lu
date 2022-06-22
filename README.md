@@ -11,7 +11,7 @@
 3.  修改application.properties里的相关配置文件
 4.  将项目在容器中部署，启动
 5.  页面登录swagger,swagger地址：http://localhost:8080/swagger-ui.html
-6.  接下里就可以通过swagger对接口进行测试
+6.  接下来就可以通过swagger对接口进行测试
 
 
 #### 参与贡献
