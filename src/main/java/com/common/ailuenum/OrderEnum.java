@@ -13,7 +13,8 @@ public enum OrderEnum {
     RETURN_GOODS_APPLY(4,"退货申请"),
     RETURNING_GOODS(5,"退货中"),
     ALREADY_RETURN_GOODS(6,"已经退货"),
-    CANCEL_TRADING(7,"取消交易")
+    WAIT_EVALUATE(7,"待评价"),
+    CANCEL_TRADING(-1,"取消交易")
     ;
 
 

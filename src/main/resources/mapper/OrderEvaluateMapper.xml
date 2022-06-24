@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.IOrderEvaluateMapper">
+    <!--evaluate order-->
+    <insert id="evaluateOrder" parameterType="com.controller.order.req.OrderEvaluateRequest">
+        insert into ai_lu_order_evaluate
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="orderNo != null">
+                order_no,
+            </if>
+            <if test="goodsStar != null">
+                goods_star,
+            </if>
+            <if test="imgUrl != null">
+                img_url,
+            </if>
+            <if test="userEvaluate != null">
+                user_evaluate,
+            </if>
+            <if test="goodsWrapStar != null">
+                goods_wrap_star,
+            </if>
+            <if test="logisticsSpeedStar != null">
+                logistics_speed_star,
+            </if>
+            <if test="deliveryManStar != null">
+                delivery_man_star,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="userId != null">
+                #{userId},
+            </if>
+            <if test="orderNo != null">
+                #{orderNo},
+            </if>
+            <if test="goodsStar != null">
+                #{goodsStar},
+            </if>
+            <if test="imgUrl != null">
+                #{imgUrl},
+            </if>
+            <if test="userEvaluate != null">
+                #{userEvaluate},
+            </if>
+            <if test="goodsWrapStar != null">
+                #{goodsWrapStar},
+            </if>
+            <if test="logisticsSpeedStar != null">
+                #{logisticsSpeedStar},
+            </if>
+            <if test="deliveryManStar != null">
+                #{deliveryManStar},
+            </if>
+        </trim>
+    </insert>
+
+</mapper>
