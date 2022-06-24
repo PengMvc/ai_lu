@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @Author: PengMvc
  * @Date: 2022/06/24/11:21
  */
-@RequestMapping("/Evaluate")
+@RequestMapping("/evaluate")
 @Api(tags = "05.订单评价模块")
 @Controller
 public class OrderEvaluateController {
@@ -35,7 +35,7 @@ public class OrderEvaluateController {
 
         // check param
         if(StringUtils.isBlank(req.getOrderNo()) || req.getUserId() == null || req.getOrderStatus() ==null){
-            throw new VerifyParameterException("评级订单缺少必传参数");
+            throw new VerifyParameterException("评价订单缺少必传参数");
         }
 
         // evaluate order
