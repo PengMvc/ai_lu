@@ -1,6 +1,7 @@
 package com.service.order.evaluate;
 
 import com.controller.order.req.OrderEvaluateRequest;
+import com.entity.order.orderevaluate.OrderEvaluate;
 
 /**
  * @Author: PengMvc
@@ -13,4 +14,13 @@ public interface IOrderEvaluateService {
      * @param req
      */
     public void evaluateOrder(OrderEvaluateRequest req);
+
+    /**
+     * get evaluate detail
+     * @param userId
+     * @param orderNo
+     * @return
+     */
+    public OrderEvaluate getOrderEvaluateDetail(Integer userId, String orderNo);
+
 }

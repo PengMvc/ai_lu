@@ -3,6 +3,28 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mapper.IOrderEvaluateMapper">
+    <resultMap id="BaseResultMap" type="com.entity.order.orderevaluate.OrderEvaluate">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="evaluate_id" jdbcType="BIGINT" property="evaluateId"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="order_no" jdbcType="VARCHAR" property="orderNo"/>
+        <result column="goods_star" jdbcType="BIGINT" property="goodsStar"/>
+        <result column="img_url" jdbcType="VARCHAR" property="imgUrl"/>
+        <result column="user_evaluate" jdbcType="VARCHAR" property="userEvaluate"/>
+        <result column="goods_wrap_star" jdbcType="BIGINT" property="goodsWrapStar"/>
+        <result column="logistics_speed_star" jdbcType="BIGINT" property="logisticsSpeedStar"/>
+        <result column="delivery_man_star" jdbcType="BIGINT" property="deliveryManStar"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        evaluate_id,user_id,order_no,goods_star,img_url,user_evaluate,
+        goods_wrap_star,logistics_speed_star,delivery_man_star
+    </sql>
     <!--evaluate order-->
     <insert id="evaluateOrder" parameterType="com.controller.order.req.OrderEvaluateRequest">
         insert into ai_lu_order_evaluate
@@ -60,5 +82,9 @@
             </if>
         </trim>
     </insert>
-
+    <!--get order evaluate detail-->
+    <select id="getOrderEvaluateDetail" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" /> from ai_lu_order_evaluate
+        aloe where aloe.user_id = #{userId,jdbcType=INTEGER} and order_no = #{orderNo,jdbcType=VARCHAR}
+    </select>
 </mapper>

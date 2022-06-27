@@ -4,16 +4,14 @@ import com.common.BaseResponse;
 import com.common.ailuenum.APICode;
 import com.controller.order.req.OrderEvaluateRequest;
 import com.define.exception.VerifyParameterException;
+import com.entity.order.orderevaluate.OrderEvaluate;
 import com.service.order.evaluate.IOrderEvaluateService;
 import com.until.StringUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * order evaluate
@@ -41,5 +39,19 @@ public class OrderEvaluateController {
         // evaluate order
         orderEvaluateService.evaluateOrder(req);
         return BaseResponse.success(APICode.SUCCESS_EVALUATE_ORDER.getMessage());
+    }
+
+    @ApiOperation("查看订单评价详情")
+    @PostMapping("/evaluateOrderDetail")
+    @ResponseBody
+    public BaseResponse<OrderEvaluate> getOrderEvaluateDetail(@RequestParam Integer userId, @RequestParam String orderNo) throws VerifyParameterException {
+
+        // check param
+        if(userId == null ||StringUtils.isBlank(orderNo)){
+            throw new VerifyParameterException("查询订单评价详情缺少必传参数");
+        }
+
+        // get orderEvaluateDetail
+        return BaseResponse.success(orderEvaluateService.getOrderEvaluateDetail(userId,orderNo));
     }
 }

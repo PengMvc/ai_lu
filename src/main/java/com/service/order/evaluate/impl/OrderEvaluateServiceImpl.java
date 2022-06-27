@@ -4,6 +4,7 @@ import com.common.ailuenum.APICode;
 import com.common.ailuenum.OrderEnum;
 import com.controller.order.req.OrderEvaluateRequest;
 import com.define.exception.APIException;
+import com.entity.order.orderevaluate.OrderEvaluate;
 import com.mapper.IOrderEvaluateMapper;
 import com.service.order.evaluate.IOrderEvaluateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,10 @@ public class OrderEvaluateServiceImpl implements IOrderEvaluateService {
 
         // evaluate order
         orderEvaluateMapper.evaluateOrder(req);
+    }
+
+    @Override
+    public OrderEvaluate getOrderEvaluateDetail(Integer userId, String orderNo) {
+        return orderEvaluateMapper.getOrderEvaluateDetail(userId,orderNo);
     }
 }
