@@ -178,4 +178,22 @@
         where alo.order_no = #{orderNo}
             and alo.user_id = #{userId}
      </delete>
+
+    <!--edit order-->
+    <update id="editOrder" parameterType="com.controller.order.req.OrderEditRequest">
+        update ai_lu_order alo
+        <set>
+            <if test="buyNum != null">
+                alo.buy_num = #{buyNum},
+            </if>
+            <if test="shippingAddress != null">
+                alo.shipping_address = #{shippingAddress},
+            </if>
+            <if test="orderStatus != null">
+                alo.order_status = #{orderStatus},
+            </if>
+        </set>
+        where alo.order_no= #{orderNo,jdbcType=VARCHAR} and
+        alo.user_id = #{userId,jdbcType=INTEGER}
+    </update>
 </mapper>

@@ -2,6 +2,7 @@ package com.controller.order;
 
 import com.common.BaseResponse;
 import com.common.ailuenum.APICode;
+import com.controller.order.req.OrderEditRequest;
 import com.controller.order.req.OrderPageRequest;
 import com.controller.order.req.OrderRequest;
 import com.controller.order.res.OrderDetailResponse;
@@ -113,5 +114,20 @@ public class OrderController {
 
         // export excel
         ExcelUtils.writeExcel(res,ordersExcelResponses,OrdersExcelResponse.class,fileName,"订单信息");
+    }
+
+    @PostMapping("/editOrder")
+    @ApiOperation("修改订单")
+    @ResponseBody
+    public BaseResponse<String> editOrder(@RequestBody OrderEditRequest req) throws VerifyParameterException {
+
+        // check param
+        if(StringUtils.isBlank(req.getOrderNo()) || req.getUserId() == null){
+            throw new VerifyParameterException("修改订单缺少必传参数");
+        }
+
+        // edit order
+        orderService.editOrder(req);
+        return BaseResponse.success(APICode.SUCCESS_EDIT_ORDER.getMessage());
     }
 }

@@ -14,6 +14,7 @@ public enum OrderEnum {
     RETURNING_GOODS(5,"退货中"),
     ALREADY_RETURN_GOODS(6,"已经退货"),
     WAIT_EVALUATE(7,"待评价"),
+    ALREADY_EVALUATE(8,"已评价"),
     CANCEL_TRADING(-1,"取消交易")
     ;
 

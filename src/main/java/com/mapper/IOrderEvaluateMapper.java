@@ -3,6 +3,7 @@ package com.mapper;
 import com.controller.order.req.OrderEvaluateRequest;
 import com.entity.order.orderevaluate.OrderEvaluate;
 import org.apache.ibatis.annotations.Param;
+import org.apache.poi.ss.formula.functions.T;
 
 /**
  * @Author: PengMvc
@@ -22,5 +23,5 @@ public interface IOrderEvaluateMapper {
      * @param orderNo
      * @return
      */
-    public OrderEvaluate getOrderEvaluateDetail(@Param("userId")Integer userId,@Param("orderNo") String orderNo);
+    public Object getOrderEvaluateDetail(@Param("userId")Integer userId, @Param("orderNo") String orderNo);
 }

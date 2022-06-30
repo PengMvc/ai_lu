@@ -6,6 +6,7 @@ import com.common.ailuenum.LogisticsEnum;
 import com.common.ailuenum.OrderEnum;
 import com.common.ailuenum.PayEnum;
 import com.constant.CacheKeyConstant;
+import com.controller.order.req.OrderEditRequest;
 import com.controller.order.req.OrderPageRequest;
 import com.controller.order.req.OrderRequest;
 import com.controller.order.res.OrderDetailResponse;
@@ -143,6 +144,11 @@ public class OrderServiceImpl implements IOrderService {
         if(deleteNum != 1){
             throw new APIException(APICode.FAIL_DELETE_ORDER);
         }
+    }
+
+    @Override
+    public void editOrder(OrderEditRequest req) {
+        orderMapper.editOrder(req);
     }
 
     private Goods createGoodsData(Integer goodsNo,Integer remainNum){

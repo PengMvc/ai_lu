@@ -1,5 +1,6 @@
 package com.mapper;
 
+import com.controller.order.req.OrderEditRequest;
 import com.controller.order.req.OrderPageRequest;
 import com.controller.order.req.OrderRequest;
 import com.entity.order.Order;
@@ -31,4 +32,10 @@ public interface IOrderMapper {
      * @param userId
      */
     public Long deleteOrder(@Param("orderNo") String orderNo,@Param("userId") Integer userId);
+
+    /**
+     * edit order
+     * @param req
+     */
+    public void editOrder(OrderEditRequest req);
 }

@@ -9,6 +9,7 @@ import com.service.order.evaluate.IOrderEvaluateService;
 import com.until.StringUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +45,7 @@ public class OrderEvaluateController {
     @ApiOperation("查看订单评价详情")
     @PostMapping("/evaluateOrderDetail")
     @ResponseBody
-    public BaseResponse<OrderEvaluate> getOrderEvaluateDetail(@RequestParam Integer userId, @RequestParam String orderNo) throws VerifyParameterException {
+    public BaseResponse<Object> getOrderEvaluateDetail(@RequestParam Integer userId, @RequestParam String orderNo) throws VerifyParameterException {
 
         // check param
         if(userId == null ||StringUtils.isBlank(orderNo)){

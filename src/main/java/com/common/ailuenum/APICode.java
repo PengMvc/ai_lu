@@ -26,6 +26,7 @@ public enum APICode {
     FAIL_DELETE_ORDER(705,"删除订单失败"),
     SUCCESS_EVALUATE_ORDER(706,"评价订单成功"),
     ORDER_INCORRECT_STATUS(707,"订单状态不对，不能进行评价"),
+    SUCCESS_EDIT_ORDER(708,"修改订单成功"),
 
     /*********************800-899商品相关****************************/
     SUCCESS_EDIT_GOODSINFO(800,"修改商品信息成功"),

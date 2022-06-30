@@ -1,5 +1,6 @@
 package com.service.order;
 
+import com.controller.order.req.OrderEditRequest;
 import com.controller.order.req.OrderPageRequest;
 import com.controller.order.req.OrderRequest;
 import com.controller.order.res.OrderDetailResponse;
@@ -20,4 +21,6 @@ public interface IOrderService {
     public PageInfo<Order> getOrdersPageByCondition(OrderPageRequest req);
 
     public void deleteOrder(String orderNo,Integer userId);
+
+    public void editOrder(OrderEditRequest req);
 }

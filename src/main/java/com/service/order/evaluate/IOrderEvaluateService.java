@@ -2,6 +2,7 @@ package com.service.order.evaluate;
 
 import com.controller.order.req.OrderEvaluateRequest;
 import com.entity.order.orderevaluate.OrderEvaluate;
+import org.apache.poi.ss.formula.functions.T;
 
 /**
  * @Author: PengMvc
@@ -21,6 +22,6 @@ public interface IOrderEvaluateService {
      * @param orderNo
      * @return
      */
-    public OrderEvaluate getOrderEvaluateDetail(Integer userId, String orderNo);
+    public Object getOrderEvaluateDetail(Integer userId, String orderNo);
 
 }
