@@ -2,14 +2,15 @@ package com.controller.order.evaluate;
 
 import com.common.BaseResponse;
 import com.common.ailuenum.APICode;
+import com.controller.order.req.OrderEvaluatePageRequest;
 import com.controller.order.req.OrderEvaluateRequest;
 import com.define.exception.VerifyParameterException;
 import com.entity.order.orderevaluate.OrderEvaluate;
+import com.github.pagehelper.PageInfo;
 import com.service.order.evaluate.IOrderEvaluateService;
 import com.until.StringUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -54,5 +55,19 @@ public class OrderEvaluateController {
 
         // get orderEvaluateDetail
         return BaseResponse.success(orderEvaluateService.getOrderEvaluateDetail(userId,orderNo));
+    }
+
+    @ApiOperation("分页查看用户已评价订单信息")
+    @PostMapping("/getEvaluateOrderPage")
+    @ResponseBody
+    public BaseResponse<PageInfo<OrderEvaluate>> queryOrderEvaluatePage(@RequestBody OrderEvaluatePageRequest req) throws VerifyParameterException {
+
+        // check param
+        if(req.getUserId() == null){
+            throw new VerifyParameterException("查询用户已评价订单缺少必传参数");
+        }
+
+        // get evaluate order page
+        return BaseResponse.success(orderEvaluateService.getOrderEvaluatePage(req));
     }
 }

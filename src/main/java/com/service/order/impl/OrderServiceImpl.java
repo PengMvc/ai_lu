@@ -131,7 +131,7 @@ public class OrderServiceImpl implements IOrderService {
         // get orderList
         List<Order> orderList = orderMapper.queryOrdersPageByCondition(req);
 
-        // check
+        // check orderList
         if(CollectionUtils.isEmpty(orderList)){
             return new PageInfo<>();
         }

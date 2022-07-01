@@ -3,15 +3,22 @@ package com.service.order.evaluate.impl;
 import com.common.ailuenum.APICode;
 import com.common.ailuenum.OrderEnum;
 import com.controller.order.req.OrderEditRequest;
+import com.controller.order.req.OrderEvaluatePageRequest;
 import com.controller.order.req.OrderEvaluateRequest;
 import com.define.exception.APIException;
 import com.entity.order.Order;
+import com.entity.order.orderevaluate.OrderEvaluate;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mapper.IOrderEvaluateMapper;
 import com.mapper.IOrderMapper;
 import com.service.order.evaluate.IOrderEvaluateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+
+import java.util.List;
 
 /**
  * @Author: PengMvc
@@ -50,6 +57,21 @@ public class OrderEvaluateServiceImpl implements IOrderEvaluateService {
             return orderDetail;
         }
         return orderEvaluateMapper.getOrderEvaluateDetail(userId,orderNo);
+    }
+
+    @Override
+    public PageInfo<OrderEvaluate> getOrderEvaluatePage(OrderEvaluatePageRequest req) {
+
+        // init pageHelper
+        PageHelper.startPage(req.getPageNo(),req.getPageSize());
+
+        // query evaluate orders
+        List<OrderEvaluate> orderEvaluateList = orderEvaluateMapper.queryOrderEvaluateList(req);
+        //
+        if(CollectionUtils.isEmpty(orderEvaluateList)){
+            return new PageInfo<>();
+        }
+        return new PageInfo<OrderEvaluate>(orderEvaluateList);
     }
 
     private OrderEditRequest packageReq(OrderEvaluateRequest req){
