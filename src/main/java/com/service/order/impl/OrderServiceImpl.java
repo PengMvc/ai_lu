@@ -22,9 +22,8 @@ import com.redis.RedisUtil;
 import com.service.order.IOrderService;
 import com.service.user.impl.UserServiceImpl;
 import com.until.BizNoGenerator;
-import com.until.DateUtil;
+import com.until.DateUtils;
 import com.until.StringUtils;
-import io.swagger.annotations.Api;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
@@ -34,6 +33,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -46,6 +46,7 @@ import java.util.List;
 public class OrderServiceImpl implements IOrderService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+    private static final String DATE_FORMATE = "yyyy-MM-dd HH:mm:ss";
 
     @Autowired
     private IOrderService orderService;
@@ -103,7 +104,7 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public OrderDetailResponse getOrderDetail(String orderNo, Integer userId) {
+    public OrderDetailResponse getOrderDetail(String orderNo, Integer userId) throws ParseException {
 
         // order key
         String orderKey = CacheKeyConstant.ORDER_DETAIL + userId +"_"+orderNo;
@@ -118,7 +119,7 @@ public class OrderServiceImpl implements IOrderService {
         Order orderDetail = orderMapper.getOrderDetail(orderNo, userId);
 
         // store to cahce
-        redisUtil.set(orderKey,JSON.toJSONString(orderDetail));
+        redisUtil.set(orderKey,JSON.toJSONString(orderDetail),DateUtils.calculateTwoDateSecond(new Date(),DateUtils.nextEffectiveDate(new Date(),DATE_FORMATE)));
         return createOrderDetailRes(orderDetail);
     }
 
@@ -159,7 +160,7 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     private OrderRequest createOrderData(OrderRequest req,Goods goods) {
-        req.setCreateDate(DateUtil.formatDate(new Date(),"yyyy-MM-dd HH:mm:ss"));
+        req.setCreateDate(DateUtils.formatDate(new Date(),"yyyy-MM-dd HH:mm:ss"));
         BigDecimal goodsTotalPrice = goods.getGoodsPrice().multiply(new BigDecimal(req.getBuyNum()));
         req.setOrderTotalPrice(goodsTotalPrice.add(req.getLogisticsFee()));
         req.setGoodsTotalPrice(goodsTotalPrice);

@@ -38,7 +38,7 @@ public class OrderController {
     @Autowired
     private IOrderMapper orderMapper;
 
-    private static final String fileName = "Order_list_"+ DateUtil.getStringDate(new Date(),"yyyy-MM-dd");
+    private static final String fileName = "Order_list_"+ DateUtils.getStringDate(new Date(),"yyyy-MM-dd");
 
     @PostMapping("/placeOrder")
     @ResponseBody
@@ -56,7 +56,7 @@ public class OrderController {
     @ApiOperation("获取订单详情")
     @PostMapping("/getOrderDetail")
     @ResponseBody
-    public BaseResponse<OrderDetailResponse> getOrderDetail(@RequestParam String orderNo, @RequestParam Integer userId) throws VerifyParameterException {
+    public BaseResponse<OrderDetailResponse> getOrderDetail(@RequestParam String orderNo, @RequestParam Integer userId) throws Exception {
 
         // check param
         if(StringUtils.isBlank(orderNo) || userId == null){

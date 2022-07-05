@@ -39,7 +39,7 @@ public class GoodsController {
     @Autowired
     private IGoodsMapper goodsMapper;
 
-    private static final String fileName = "Goods_list_"+ DateUtil.getStringDate(new Date(),"yyyy-MM-dd");
+    private static final String fileName = "Goods_list_"+ DateUtils.getStringDate(new Date(),"yyyy-MM-dd");
 
     @PostMapping("/getGoodsPage")
     @ApiOperation("按照条件查询商品信息分页展示")

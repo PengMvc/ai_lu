@@ -7,6 +7,8 @@ import com.controller.order.res.OrderDetailResponse;
 import com.entity.order.Order;
 import com.github.pagehelper.PageInfo;
 
+import java.text.ParseException;
+
 /**
  * order service
  * @Author: PengMvc
@@ -16,7 +18,7 @@ public interface IOrderService {
 
     public void placeOrder(OrderRequest req);
 
-    public OrderDetailResponse getOrderDetail(String orderNo, Integer userId);
+    public OrderDetailResponse getOrderDetail(String orderNo, Integer userId) throws ParseException;
 
     public PageInfo<Order> getOrdersPageByCondition(OrderPageRequest req);
 
