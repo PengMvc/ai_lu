@@ -137,10 +137,4 @@ public class DateUtils {
         }
         return convertStatus;
     }
-
-    public static void main(String[] args) throws ParseException {
-        Date date = DateUtils.nextEffectiveDate(new Date(), "yyyy-MM-dd HH:mm:ss");
-        long l = DateUtils.calculateTwoDateSecond(new Date(), date);
-        logger.info("*"+date+":"+l);
-    }
 }
