@@ -12,6 +12,7 @@ import com.until.StringUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +28,9 @@ public class OrderEvaluateController {
 
     @Autowired
     IOrderEvaluateService orderEvaluateService;
+
+    @Autowired
+    private KafkaTemplate kafkaTemplate;
 
     @ApiOperation("订单评价")
     @PostMapping("/evaluateOrder")
@@ -69,5 +73,14 @@ public class OrderEvaluateController {
 
         // get evaluate order page
         return BaseResponse.success(orderEvaluateService.getOrderEvaluatePage(req));
+    }
+
+
+    @PostMapping("/sendGoodsMsg")
+    @ApiOperation("发送商品信息")
+    @ResponseBody
+    public BaseResponse<Void> sendGoodsMsg(@RequestParam String topic, @RequestParam String msg ){
+        kafkaTemplate.send(topic,msg);
+        return BaseResponse.success();
     }
 }

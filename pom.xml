@@ -115,7 +115,11 @@
             <artifactId>hutool-all</artifactId>
             <version>5.7.22</version>
         </dependency>
+        <!--kafka-->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
     </dependencies>
-
 
 </project>
