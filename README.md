@@ -13,8 +13,12 @@
 5.  页面登录swagger,swagger地址：http://localhost:8080/swagger-ui.html
 6.  接下来就可以通过swagger对接口进行测试
 
-####后台接口展示
+#### 后台接口展示
 ![输入图片说明](%E6%8D%95%E8%8E%B7zong.PNG)
+![输入图片说明](%E6%8D%95%E8%8E%B71.PNG)
+![输入图片说明](%E6%8D%95%E8%8E%B72.PNG)
+![输入图片说明](%E6%8D%95%E8%8E%B73.PNG)
+
 
 
 #### 参与贡献
