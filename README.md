@@ -4,14 +4,15 @@
    技术栈介绍：基于springboot+mybatis+mysql的web项目，缓存中间件选用了redis,采用的是哨兵的模式，实现了高可用，消息中间件是kafka,同时集成了swagger方便接口的测试，项目中有分布式锁的应用场景，以及基于redisson的解决方案，欢迎大家提出建议和修改，我将持续迭代进行开发，如果觉得还不错的话给个star,万分感谢！
 
 
-#### 操作简单介绍
+#### 操作介绍
 
 1.  搭建redis的哨兵模式
-2.  搭建mysql数据库，其它运行环境自己搭建这里不细说，如jdk、maven等
-3.  修改application.properties里的相关配置文件
-4.  将项目在容器中部署，启动
-5.  页面登录swagger,swagger地址：http://localhost:8080/swagger-ui.html
-6.  接下来就可以通过swagger对接口进行测试
+2.  搭建kafka环境
+3.  搭建mysql数据库，其它运行环境自己搭建这里不细说，如jdk、maven等
+4.  修改application.properties里的相关配置文件
+5.  将项目在容器中部署，启动
+6.  页面登录swagger,swagger地址：http://localhost:8080/swagger-ui.html
+7.  接下来就可以通过swagger对接口进行测试
 
 #### 后台接口展示
 
