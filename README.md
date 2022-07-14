@@ -16,12 +16,10 @@
 
 #### 后台接口展示
 
-![输入图片说明](%E6%8D%95%E8%8E%B7zong.PNG)
-![输入图片说明](%E6%8D%95%E8%8E%B71.PNG)
-![输入图片说明](%E6%8D%95%E8%8E%B72.PNG)
-![输入图片说明](%E6%8D%95%E8%8E%B73.PNG)
-
-
+![输入图片说明](src/main/resources/png/ORDER_EVALUATE.PNG)
+![输入图片说明](src/main/resources/png/AILU.PNG)
+![输入图片说明](src/main/resources/png/USER.PNG)
+![输入图片说明](src/main/resources/png/ORDER.PNG)
 
 #### 参与贡献
 
