@@ -2,6 +2,7 @@ package com.service.goods.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.common.ailuenum.APICode;
+import com.common.topic.AiluTopics;
 import com.constant.CacheKeyConstant;
 import com.controller.goods.req.AddGoodsRequest;
 import com.controller.goods.req.EditGoodsRequest;
@@ -16,7 +17,9 @@ import com.service.goods.IGoodsService;
 import com.until.BizNoGenerator;
 import com.until.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import springfox.documentation.spring.web.json.Json;
 
@@ -27,6 +30,7 @@ import java.util.List;
  * @Date: 2022/05/26/16:51
  */
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class GoodsServiceImpl implements IGoodsService {
 
     @Autowired
@@ -34,6 +38,9 @@ public class GoodsServiceImpl implements IGoodsService {
 
     @Autowired
     private RedisUtil redisUtil;
+
+    @Autowired
+    private KafkaTemplate kafkaTemplate;
 
     @Override
     public PageInfo<Goods> queryGoodsListPage(QueryGoodsRequest req) {
@@ -77,9 +84,13 @@ public class GoodsServiceImpl implements IGoodsService {
 
     @Override
     public void addGoodsInfo(AddGoodsRequest req) {
+
         // set goodsNo
         req.setGoodsNo(BizNoGenerator.getUniqueValue());
         goodsMapper.addGoodsInfo(req);
+
+        // send msg to ai_lu_msgx
+        kafkaTemplate.send(AiluTopics.AI_LU_GOODS,req);
     }
 
     @Override
