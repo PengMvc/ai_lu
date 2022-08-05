@@ -14,14 +14,14 @@ import com.github.pagehelper.PageInfo;
 import com.mapper.IGoodsMapper;
 import com.redis.RedisUtil;
 import com.service.goods.IGoodsService;
-import com.until.BizNoGenerator;
-import com.until.StringUtils;
+import com.util.BizNoGenerator;
+import com.util.OperateJsonAndObj;
+import com.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
-import springfox.documentation.spring.web.json.Json;
 
 import java.util.List;
 
@@ -90,7 +90,7 @@ public class GoodsServiceImpl implements IGoodsService {
         goodsMapper.addGoodsInfo(req);
 
         // send msg to ai_lu_msgx
-        kafkaTemplate.send(AiluTopics.AI_LU_GOODS,req);
+        kafkaTemplate.send(AiluTopics.AI_LU_GOODS,OperateJsonAndObj.objToJsonString(req));
     }
 
     @Override

@@ -10,7 +10,7 @@ import com.entity.user.User;
 import com.mapper.IUserMapper;
 import com.redis.RedisUtil;
 import com.service.user.IUserService;
-import com.until.StringUtils;
+import com.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

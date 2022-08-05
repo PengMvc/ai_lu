@@ -1,4 +1,4 @@
-package com.until;
+package com.util;
 
 import java.util.Collection;
 
