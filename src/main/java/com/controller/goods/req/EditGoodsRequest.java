@@ -33,13 +33,13 @@ public class EditGoodsRequest {
     private String goodsSource;
 
     @ApiModelProperty(value = "商品编号",required = true)
-    private Integer goodsNo;
+    private String goodsNo;
 
-    public Integer getGoodsNo() {
+    public String getGoodsNo() {
         return goodsNo;
     }
 
-    public void setGoodsNo(Integer goodsNo) {
+    public void setGoodsNo(String goodsNo) {
         this.goodsNo = goodsNo;
     }
 

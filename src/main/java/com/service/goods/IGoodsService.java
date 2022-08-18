@@ -24,7 +24,7 @@ public interface IGoodsService {
      * @param goodsNo
      * @return
      */
-    public Goods queryGoodsDetail(Integer goodsNo);
+    public Goods queryGoodsDetail(String goodsNo);
 
     /**
      * 修改商品信息

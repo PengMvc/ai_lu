@@ -58,7 +58,7 @@ public class GoodsServiceImpl implements IGoodsService {
     }
 
     @Override
-    public Goods queryGoodsDetail(Integer goodsNo) {
+    public Goods queryGoodsDetail(String goodsNo) {
 
         // cache goods key
         String goodsKey = CacheKeyConstant.GOODS_DETAIL+goodsNo;
@@ -69,7 +69,7 @@ public class GoodsServiceImpl implements IGoodsService {
             return JSON.parseObject(goodsString, Goods.class);
         }
 
-        // query goods from redis
+        // query goods from mysql
         Goods goods = goodsMapper.queryGoodsDetail(goodsNo);
 
         // cache goodsDetail one month

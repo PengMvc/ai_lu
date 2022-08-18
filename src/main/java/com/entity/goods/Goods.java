@@ -28,7 +28,7 @@ public class Goods {
     private String thirdCategory;
 
     /**goods no*/
-    private Integer goodsNo;
+    private String goodsNo;
 
     /**goods num*/
     private Integer goodsNum;
@@ -104,11 +104,11 @@ public class Goods {
         this.thirdCategory = thirdCategory;
     }
 
-    public Integer getGoodsNo() {
+    public String getGoodsNo() {
         return goodsNo;
     }
 
-    public void setGoodsNo(Integer goodsNo) {
+    public void setGoodsNo(String goodsNo) {
         this.goodsNo = goodsNo;
     }
 

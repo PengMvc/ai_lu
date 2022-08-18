@@ -56,7 +56,7 @@ public class GoodsController {
     @PostMapping("/getGoodsDetail")
     @ApiOperation("查询商品详情")
     @ResponseBody
-    public BaseResponse<Goods> queryGoodsDetail(@RequestParam Integer goodsNo) throws VerifyParameterException {
+    public BaseResponse<Goods> queryGoodsDetail(@RequestParam String goodsNo) throws VerifyParameterException {
 
         // check param
         if(goodsNo == null){

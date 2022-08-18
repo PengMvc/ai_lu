@@ -28,11 +28,13 @@ public enum APICode {
     ORDER_INCORRECT_STATUS(707,"订单状态不对，不能进行评价"),
     SUCCESS_EDIT_ORDER(708,"修改订单成功"),
 
+
     /*********************800-899商品相关****************************/
     SUCCESS_EDIT_GOODSINFO(800,"修改商品信息成功"),
     SUCCESS_ADD_GOODSINFO(801,"新增商品信息成功"),
     SUCCESS_DELETE_GOODS(802,"删除商品信息成功"),
-    FAIL_DELETE_GOODS(803,"删除商品信息失败")
+    FAIL_DELETE_GOODS(803,"删除商品信息失败"),
+    GOODS_NO_IS_EMPTY(803,"商品编号为空"),
     ;
     /**响应码*/
     private Integer code;

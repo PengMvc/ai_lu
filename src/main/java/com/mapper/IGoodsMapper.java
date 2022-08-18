@@ -25,7 +25,7 @@ public interface IGoodsMapper {
      * @param goodNo
      * @return goods
      */
-    public Goods queryGoodsDetail(Integer goodNo);
+    public Goods queryGoodsDetail(String goodNo);
 
     /**
      * 更新商品信息表

@@ -8,5 +8,5 @@ package com.lock;
 public class AiLuLock {
 
     /** lock of place order*/
-    public static final String PLACE_ORDER="PLACE_ORDER";
+    public static final String PLACE_ORDER="PLACE_ORDER_";
 }

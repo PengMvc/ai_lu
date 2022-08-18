@@ -66,8 +66,16 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public void placeOrder(OrderRequest req) {
 
+        // get goodsNo
+        String goodsNo = req.getGoodsNo();
+
+        // check parmOOS
+        if(StringUtils.isBlank(goodsNo)){
+            throw new APIException(APICode.GOODS_NO_IS_EMPTY);
+        }
+
         // get lock obj
-        RLock placeOrderLock = redisson.getLock(AiLuLock.PLACE_ORDER);
+        RLock placeOrderLock = redisson.getLock(AiLuLock.PLACE_ORDER+goodsNo);
 
         // get lockFlag
         boolean lockFlag = placeOrderLock.isLocked();
@@ -100,7 +108,6 @@ public class OrderServiceImpl implements IOrderService {
         }finally {
             placeOrderLock.unlock();
         }
-
     }
 
     @Override
@@ -152,7 +159,7 @@ public class OrderServiceImpl implements IOrderService {
         orderMapper.editOrder(req);
     }
 
-    private Goods createGoodsData(Integer goodsNo,Integer remainNum){
+    private Goods createGoodsData(String goodsNo,Integer remainNum){
         Goods goods = new Goods();
         goods.setGoodsNum(remainNum);
         goods.setGoodsNo(goodsNo);

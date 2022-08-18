@@ -54,7 +54,7 @@
             and alg.is_on_sale = #{isOnSale}
         </if>
     </select>
-    <select id="queryGoodsDetail" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="queryGoodsDetail" parameterType="java.lang.String" resultMap="BaseResultMap">
         SELECT <include refid="Base_Column_List" />
         FROM ai_lu_goods alg where alg.goods_no = #{goodsNo}
     </select>

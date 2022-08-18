@@ -17,7 +17,7 @@ public class OrderRequest {
     private Integer buyNum;
 
     @ApiModelProperty(value = "商品编号" ,required=true)
-    private Integer goodsNo;
+    private String goodsNo;
 
     @ApiModelProperty(hidden = true,value="订单总价")
     private BigDecimal orderTotalPrice;
@@ -167,11 +167,11 @@ public class OrderRequest {
         this.userComment = userComment;
     }
 
-    public Integer getGoodsNo() {
+    public String getGoodsNo() {
         return goodsNo;
     }
 
-    public void setGoodsNo(Integer goodsNo) {
+    public void setGoodsNo(String goodsNo) {
         this.goodsNo = goodsNo;
     }
 }
