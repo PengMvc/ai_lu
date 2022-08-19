@@ -69,7 +69,7 @@ public class OrderServiceImpl implements IOrderService {
         // get goodsNo
         String goodsNo = req.getGoodsNo();
 
-        // check parmOOS
+        // check param
         if(StringUtils.isBlank(goodsNo)){
             throw new APIException(APICode.GOODS_NO_IS_EMPTY);
         }
