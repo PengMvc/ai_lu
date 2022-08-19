@@ -45,7 +45,7 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements IOrderService {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
     private static final String DATE_FORMATE = "yyyy-MM-dd HH:mm:ss";
 
     @Autowired
