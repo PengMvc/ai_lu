@@ -90,7 +90,7 @@ public class OrderServiceImpl implements IOrderService {
             placeOrderLock.lock();
 
             // get order inventory from mysql
-            Goods goods = goodsMapper.queryGoodsDetail(req.getGoodsNo());
+            Goods goods = goodsMapper.queryGoodsDetail(goodsNo);
             Integer remain = goods.getGoodsNum() - req.getBuyNum();
             if(remain < 0){
                 logger.error("库存不足");
@@ -101,7 +101,7 @@ public class OrderServiceImpl implements IOrderService {
             orderMapper.createOrder(createOrderData(req,goods));
 
             // update inventory
-            goodsMapper.updateGoodsInfo(createGoodsData(req.getGoodsNo(),remain));
+            goodsMapper.updateGoodsInfo(createGoodsData(goodsNo,remain));
         } catch (Exception e) {
             logger.error("下单失败");
             throw new APIException(APICode.FAIL_PLACE_ORDER);
