@@ -30,7 +30,7 @@ import java.util.List;
 @RequestMapping("/order")
 @Api(tags = {"04.订单相关模块"})
 @Controller
-public class OrderController {
+public class SyncOrderController {
 
     @Autowired
     private IOrderService orderService;
@@ -46,7 +46,7 @@ public class OrderController {
     public BaseResponse<String> placeOrder(@RequestBody OrderRequest req) throws InterruptedException, VerifyParameterException {
 
         // check param
-        if(req.getGoodsNo() ==null || req.getBuyNum() == null || req.getBuyNum()  <= 0){
+        if(req.getGoodsNo() == null || req.getBuyNum() == null || req.getBuyNum()  <= 0){
             throw new VerifyParameterException("用户下单缺少必传参数");
         }
         orderService.placeOrder(req);

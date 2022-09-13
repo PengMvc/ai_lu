@@ -177,7 +177,7 @@ public class OrderServiceImpl implements IOrderService {
         return req;
     }
 
-    public OrderDetailResponse createOrderDetailRes(Order orderDetail){
+    private OrderDetailResponse createOrderDetailRes(Order orderDetail){
         OrderDetailResponse orderDetailRes = new OrderDetailResponse();
         orderDetailRes.setCreateDate(orderDetail.getCreateDate());
         orderDetailRes.setOrderNo(orderDetail.getOrderNo());
