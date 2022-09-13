@@ -16,7 +16,7 @@
 
 #### 后台接口展示
 
-![输入图片说明](src/main/resources/png/ORDER_EVALUATE.PNG)
+![输入图片说明](src/main/resources/png/zong.PNG)
 ![输入图片说明](src/main/resources/png/AILU.PNG)
 ![输入图片说明](src/main/resources/png/USER.PNG)
 ![输入图片说明](src/main/resources/png/order.PNG)
