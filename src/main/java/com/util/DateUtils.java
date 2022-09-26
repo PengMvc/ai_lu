@@ -6,6 +6,7 @@ import com.service.user.impl.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -136,5 +137,49 @@ public class DateUtils {
             convertStatus = false;
         }
         return convertStatus;
+    }
+
+    /**
+     * Calculate Days Of Two Date
+     * @param beforeDate
+     * @param afterDate
+     * @return days
+     */
+    public static int calculateDaysOfTwoDate( Date beforeDate,  Date afterDate) {
+        int result = 0;
+
+        // convert days tp Calendar
+        Calendar beforeCalendar = Calendar.getInstance();
+        beforeCalendar.setTime(beforeDate);
+        Calendar afterCalendar = Calendar.getInstance();
+        afterCalendar.setTime(afterDate);
+
+        // get DayOfYear
+        int beforeDayOfYear = beforeCalendar.get(Calendar.DAY_OF_YEAR);
+        int afterDayOfYear = afterCalendar.get(Calendar.DAY_OF_YEAR);
+
+        // get year
+        int beforeYear = beforeCalendar.get(Calendar.YEAR);
+        int afterYear = afterCalendar.get(Calendar.YEAR);
+
+        if (beforeYear == afterYear) {
+            // the same year
+            result = afterDayOfYear - beforeDayOfYear;
+        } else {
+            // different year
+            int timeDistance = 0;
+            for (int i = beforeYear; i < afterYear; i++) {
+                if (i % 4 == 0 && i % 100 != 0 || i % 400 == 0) {
+                    // a leap year
+                    timeDistance += 366;
+                } else {
+                    // not a leap year
+                    timeDistance += 365;
+                }
+            }
+            result = timeDistance + (afterDayOfYear - beforeDayOfYear);
+        }
+
+        return result;
     }
 }
