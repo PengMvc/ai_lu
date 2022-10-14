@@ -18,7 +18,7 @@ public class GoodsExcelResponse {
 
     @ApiModelProperty(value = "商品编号")
     @ExcelProperty(value ="商品编号" ,index = 1)
-    private Integer goodsNo;
+    private String goodsNo;
 
     @ApiModelProperty(value = "商品数量")
     @ExcelProperty(value ="商品数量" ,index = 4)
@@ -51,11 +51,11 @@ public class GoodsExcelResponse {
         this.index = index;
     }
 
-    public Integer getGoodsNo() {
+    public String getGoodsNo() {
         return goodsNo;
     }
 
-    public void setGoodsNo(Integer goodsNo) {
+    public void setGoodsNo(String goodsNo) {
         this.goodsNo = goodsNo;
     }
 
